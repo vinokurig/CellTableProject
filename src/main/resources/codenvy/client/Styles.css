@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.dialogButtonStyle {
+    float: right;
+}
+
+.mainPageButtonStyle {
+    margin: 6px;
+}
+
+.labelStyle {
+    width: 50px;
+    float: left;
+    padding:5px;
+}
+
+.textBoxStyle {
+    width: 180px;
+    float: left;
+}
+
