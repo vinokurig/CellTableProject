@@ -1,5 +1,6 @@
 package codenvy.client.mvp.views;
 
+import codenvy.client.Resources;
 import codenvy.client.mvp.models.User;
 
 import com.google.gwt.cell.client.DateCell;
@@ -16,6 +17,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
+
 
 import java.util.Date;
 import java.util.List;
@@ -41,6 +43,8 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     private CellTable createTable() {
 
         CellTable usersTable = new CellTable<User>();
+
+        usersTable.addStyleName(Resources.IMPL.Styles().cellTableStyle());
 
         // Add a text column to show the name.
         TextColumn<User> nameColumn = new TextColumn<User>() {
@@ -103,19 +107,18 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     }
 
     @UiHandler("add")
-    void onAddButtonClicked(ClickEvent event) {
+    public void onAddButtonClicked(ClickEvent event) {
         presenter.onAddButtonClicked();
     }
 
     @UiHandler("edit")
-    void onEditButtonClicked(ClickEvent event) {
+    public void onEditButtonClicked(ClickEvent event) {
         presenter.onEditButtonClicked();
     }
 
     @UiHandler("delete")
-    void onDeleteButtonClicked(ClickEvent event) {
+    public void onDeleteButtonClicked(ClickEvent event) {
         presenter.onDeleteButtonClicked();
     }
 
 }
-

@@ -2,21 +2,21 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:d="urn:import:com.google.gwt.user.datepicker.client">
 
-    <ui:with field='res' type='codenvy.client.Resources'/>
+    <ui:with field='resources' type='codenvy.client.Resources'/>
 
     <g:DockLayoutPanel unit='PX' width="250px" height="115px">
 
         <g:center>
             <g:FlowPanel>
 
-                <g:Label styleName="{res.Styles.labelStyle}" text="Name:"/>
-                <g:TextBox styleName="{res.Styles.textBoxStyle}" ui:field="name"/>
+                <g:Label styleName="{resources.Styles.labelStyle}" text="Name:"/>
+                <g:TextBox styleName="{resources.Styles.textBoxStyle}" ui:field="name"/>
 
-                <g:Label styleName="{res.Styles.labelStyle}" text="Address:"/>
-                <g:TextBox styleName="{res.Styles.textBoxStyle}" ui:field="address"/>
+                <g:Label styleName="{resources.Styles.labelStyle}" text="Address:"/>
+                <g:TextBox styleName="{resources.Styles.textBoxStyle}" ui:field="address"/>
 
-                <g:Label styleName="{res.Styles.labelStyle}" text="Birthday:"/>
-                <d:DateBox styleName="{res.Styles.textBoxStyle}" ui:field="birthday"/>
+                <g:Label styleName="{resources.Styles.labelStyle}" text="Birthday:"/>
+                <d:DateBox styleName="{resources.Styles.textBoxStyle}" ui:field="birthday"/>
 
             </g:FlowPanel>
         </g:center>
@@ -24,8 +24,8 @@
         <g:south size="25">
             <g:FlowPanel>
 
-                <g:Button styleName="{res.Styles.dialogButtonStyle}" ui:field="closeButton" text="Close"/>
-                <g:Button styleName="{res.Styles.dialogButtonStyle}" ui:field="saveButton" text="Save"/>
+                <g:Button styleName="{resources.Styles.buttonStyle}" ui:field="closeButton" text="Close"/>
+                <g:Button styleName="{resources.Styles.buttonStyle}" ui:field="saveButton" text="Save"/>
 
             </g:FlowPanel>
         </g:south>

@@ -82,12 +82,12 @@ public class DialogViewImpl extends DialogBox implements DialogView {
     }
 
     @UiHandler("saveButton")
-    void onSaveButtonClicked(ClickEvent event) {
+    public void onSaveButtonClicked(ClickEvent event) {
         presenter.onSaveButtonClicked();
     }
 
     @UiHandler("closeButton")
-    void onCloseButtonClicked(ClickEvent event) {
+    public void onCloseButtonClicked(ClickEvent event) {
         presenter.onCloseButtonClicked();
     }
 }

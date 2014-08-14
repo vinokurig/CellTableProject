@@ -2,7 +2,17 @@
      xmlns:g='urn:import:com.google.gwt.user.client.ui'
      xmlns:ct='urn:import:com.google.gwt.user.cellview.client'>
 
-    <ui:with field='res' type='codenvy.client.Resources'/>
+    <ui:with field='resources' type='codenvy.client.Resources'/>
+
+    <ui:style>
+        .buttonStyle {
+            margin: 6px;
+        }
+        .textStyle {
+            margin: 6px;
+            padding: 3px;
+        }
+    </ui:style>
 
     <g:DockLayoutPanel unit='PX' width="100%" height="100%">
 
@@ -14,9 +24,11 @@
 
         <g:east size='170'>
             <g:FlowPanel>
-                <g:Button addStyleNames="{res.Styles.mainPageButtonStyle}" ui:field="add" text="Add" width="150px"/>
-                <g:Button addStyleNames="{res.Styles.mainPageButtonStyle}" ui:field="edit" text="Edit" width="150px"/>
-                <g:Button addStyleNames="{res.Styles.mainPageButtonStyle}" ui:field="delete" text="Delete" width="150px"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="add" text="Add" width="150px"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="edit" text="Edit" width="150px"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="delete" text="Delete" width="150px"/>
+
+                <g:Label addStyleNames="{style.textStyle}" text="{resources.text.getText}"/>
             </g:FlowPanel>
         </g:east>
 

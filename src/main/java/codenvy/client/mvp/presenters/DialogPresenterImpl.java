@@ -37,7 +37,7 @@ public class DialogPresenterImpl implements Presenter, DialogView.Presenter {
         container.add(view.asWidget());
     }
 
-    void showDialog(Callback callback, User editedRow) {
+    public void showDialog(Callback callback, User editedRow) {
         this.callback = callback;
 
         view.setName(editedRow == null ? "" : editedRow.getName());

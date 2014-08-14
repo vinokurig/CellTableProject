@@ -1,11 +1,7 @@
 @CHARSET "UTF-8";
 
-.dialogButtonStyle {
+.buttonStyle {
     float: right;
-}
-
-.mainPageButtonStyle {
-    margin: 6px;
 }
 
 .labelStyle {
@@ -17,5 +13,9 @@
 .textBoxStyle {
     width: 180px;
     float: left;
+}
+
+.cellTableStyle {
+    width: 50px;
 }
 

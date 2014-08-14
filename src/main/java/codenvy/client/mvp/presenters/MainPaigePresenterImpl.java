@@ -13,7 +13,7 @@ public class MainPaigePresenterImpl implements Presenter, MainPageView.Presenter
 
     private final MainPageView view;
 
-    private DialogPresenterImpl dialogPresenter;
+    private final DialogPresenterImpl dialogPresenter;
 
     final private DialogPresenterImpl.Callback addCallback;
 
