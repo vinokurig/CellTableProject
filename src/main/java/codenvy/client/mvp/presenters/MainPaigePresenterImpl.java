@@ -21,13 +21,15 @@ public class MainPaigePresenterImpl implements Presenter, MainPageView.Presenter
 
     private User selectedUser;
 
-    private List<User> usersList = new ArrayList<User>();
+    private List<User> usersList;
 
     public MainPaigePresenterImpl(MainPageView view) {
-        dialogPresenter = new DialogPresenterImpl(new DialogViewImpl());
-
         this.view = view;
         this.view.setPresenter(this);
+
+        dialogPresenter = new DialogPresenterImpl(new DialogViewImpl());
+
+        usersList = new ArrayList<User>();
 
         addCallback = new DialogPresenterImpl.Callback() {
             @Override
