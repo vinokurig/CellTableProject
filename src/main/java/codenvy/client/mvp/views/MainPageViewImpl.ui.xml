@@ -12,6 +12,11 @@
             margin: 6px;
             padding: 3px;
         }
+        .imageStyle {
+            margin: 6px;
+            width: 150px;
+            height: 150px;
+        }
     </ui:style>
 
     <g:DockLayoutPanel unit='PX' width="100%" height="100%">
@@ -29,6 +34,8 @@
                 <g:Button addStyleNames="{style.buttonStyle}" ui:field="delete" text="Delete" width="150px"/>
 
                 <g:Label addStyleNames="{style.textStyle}" text="{resources.text.getText}"/>
+
+                <g:Image addStyleNames="{style.imageStyle}" resource='{resources.userImage}'/>
             </g:FlowPanel>
         </g:east>
 

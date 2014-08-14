@@ -24,8 +24,7 @@ import java.util.List;
 
 public class MainPageViewImpl extends Composite implements MainPageView {
 
-    interface MainPageViewImplUiBinder extends UiBinder<Widget, MainPageViewImpl> {
-    }
+    interface MainPageViewImplUiBinder extends UiBinder<Widget, MainPageViewImpl> {}
 
     private static MainPageViewImplUiBinder uiBinder = GWT.create(MainPageViewImplUiBinder.class);
 
