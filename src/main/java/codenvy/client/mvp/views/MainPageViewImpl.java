@@ -2,9 +2,7 @@ package codenvy.client.mvp.views;
 
 import codenvy.client.Resources;
 import codenvy.client.mvp.events.DeleteUserEvent;
-import codenvy.client.mvp.events.DeleteUserEventHandler;
 import codenvy.client.mvp.models.User;
-
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
@@ -37,7 +35,9 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     @UiField(provided = true)
     CellTable<User> usersTable;
 
-    public MainPageViewImpl() {
+    public MainPageViewImpl(SimpleEventBus eventBus) {
+        this.eventBus = eventBus;
+
         usersTable = createTable();
 
         initWidget(uiBinder.createAndBindUi(this));

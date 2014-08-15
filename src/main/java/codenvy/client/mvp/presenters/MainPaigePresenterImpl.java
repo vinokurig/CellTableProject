@@ -1,5 +1,7 @@
 package codenvy.client.mvp.presenters;
 
+import codenvy.client.mvp.events.DeleteUserEvent;
+import codenvy.client.mvp.events.DeleteUserEventHandler;
 import codenvy.client.mvp.models.User;
 import codenvy.client.mvp.views.DialogViewImpl;
 import codenvy.client.mvp.views.MainPageView;
@@ -16,9 +18,9 @@ public class MainPaigePresenterImpl implements Presenter, MainPageView.Presenter
 
     private final DialogPresenterImpl dialogPresenter;
 
-    final private DialogPresenterImpl.Callback addCallback;
+    private final DialogPresenterImpl.Callback addCallback;
 
-    final private DialogPresenterImpl.Callback editCallback;
+    private final DialogPresenterImpl.Callback editCallback;
 
     private User selectedUser;
 
@@ -26,13 +28,20 @@ public class MainPaigePresenterImpl implements Presenter, MainPageView.Presenter
 
     public MainPaigePresenterImpl(MainPageView view, SimpleEventBus eventBus) {
         this.view = view;
-
         this.view.setPresenter(this);
-        this.view.setEventBus(eventBus);
 
         dialogPresenter = new DialogPresenterImpl(new DialogViewImpl());
 
-        usersList = new ArrayList<User>();
+        usersList = new ArrayList<>();
+
+        eventBus.addHandler(DeleteUserEvent.TYPE, new DeleteUserEventHandler() {
+            @Override
+            public void deleteUser(DeleteUserEvent event) {
+                usersList.remove(selectedUser);
+
+                MainPaigePresenterImpl.this.view.setUser(usersList);
+            }
+        });
 
         addCallback = new DialogPresenterImpl.Callback() {
             @Override
@@ -75,8 +84,4 @@ public class MainPaigePresenterImpl implements Presenter, MainPageView.Presenter
         container.add(view.asWidget());
     }
 
-    public void deleteUser(){
-        usersList.remove(selectedUser);
-        MainPaigePresenterImpl.this.view.setUser(usersList);
-    };
 }
