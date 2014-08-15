@@ -1,4 +1,4 @@
-package codenvy.client.mvp.presenters;
+package codenvy.client.mvp;
 
 import com.google.gwt.user.client.ui.HasWidgets;
 

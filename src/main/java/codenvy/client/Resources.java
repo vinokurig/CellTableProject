@@ -13,8 +13,7 @@ public interface Resources extends ClientBundle {
     @Source("Styles.css")
     Styles Styles();
 
-    public interface Styles extends CssResource{
-
+    public interface Styles extends CssResource {
         String labelStyle();
 
         String textBoxStyle();

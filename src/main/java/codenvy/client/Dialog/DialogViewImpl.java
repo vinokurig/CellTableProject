@@ -1,4 +1,4 @@
-package codenvy.client.mvp.views;
+package codenvy.client.Dialog;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

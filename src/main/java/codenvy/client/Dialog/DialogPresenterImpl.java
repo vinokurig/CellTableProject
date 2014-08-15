@@ -1,13 +1,13 @@
-package codenvy.client.mvp.presenters;
+package codenvy.client.Dialog;
 
 import codenvy.client.mvp.models.User;
-import codenvy.client.mvp.views.DialogView;
 
+import codenvy.client.mvp.Presenter;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 public class DialogPresenterImpl implements Presenter, DialogView.Presenter {
 
-    interface Callback {
+    public interface Callback {
         void onSaveButtonClicked(User user);
     }
 

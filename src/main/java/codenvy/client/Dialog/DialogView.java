@@ -1,4 +1,4 @@
-package codenvy.client.mvp.views;
+package codenvy.client.Dialog;
 
 import com.google.gwt.user.client.ui.IsWidget;
 
