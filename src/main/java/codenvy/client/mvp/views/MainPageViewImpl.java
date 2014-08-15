@@ -1,12 +1,15 @@
 package codenvy.client.mvp.views;
 
 import codenvy.client.Resources;
+import codenvy.client.mvp.events.DeleteUserEvent;
+import codenvy.client.mvp.events.DeleteUserEventHandler;
 import codenvy.client.mvp.models.User;
 
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -18,7 +21,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     private static MainPageViewImplUiBinder uiBinder = GWT.create(MainPageViewImplUiBinder.class);
 
     private Presenter presenter;
+
+    private SimpleEventBus eventBus;
 
     @UiField(provided = true)
     CellTable<User> usersTable;
@@ -101,6 +105,11 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     }
 
     @Override
+    public void setEventBus(SimpleEventBus eventBus) {
+        this.eventBus = eventBus;
+    }
+
+    @Override
     public void setUser(List<User> users) {
         usersTable.setRowData(users);
     }
@@ -117,7 +126,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
     @UiHandler("delete")
     public void onDeleteButtonClicked(ClickEvent event) {
-        presenter.onDeleteButtonClicked();
+        eventBus.fireEvent(new DeleteUserEvent());
     }
 
 }

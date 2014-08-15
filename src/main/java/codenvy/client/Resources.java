@@ -27,6 +27,6 @@ public interface Resources extends ClientBundle {
     @Source("Text.txt")
     TextResource text();
 
-    @ImageResource.ImageOptions(flipRtl = false)
+    @ImageResource.ImageOptions()
     ImageResource userImage();
 }
