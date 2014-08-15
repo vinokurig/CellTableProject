@@ -3,6 +3,7 @@ package codenvy.client.mvp.views;
 import codenvy.client.Resources;
 import codenvy.client.mvp.events.DeleteUserEvent;
 import codenvy.client.mvp.models.User;
+
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
@@ -86,8 +87,6 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         usersTable.setColumnWidth(addressColumn, 40, Style.Unit.PCT);
         usersTable.setColumnWidth(dateColumn, 20, Style.Unit.PCT);
 
-        usersTable.setWidth("100%");
-
         selModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
             public void onSelectionChange(SelectionChangeEvent event) {
                 User selectedUser = selModel.getSelectedObject();
@@ -102,11 +101,6 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
-    }
-
-    @Override
-    public void setEventBus(SimpleEventBus eventBus) {
-        this.eventBus = eventBus;
     }
 
     @Override
