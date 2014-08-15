@@ -1,7 +1,5 @@
 package codenvy.client.mvp.presenters;
 
-import codenvy.client.mvp.events.DeleteUserEvent;
-import codenvy.client.mvp.events.DeleteUserEventHandler;
 import codenvy.client.mvp.models.User;
 import codenvy.client.mvp.views.DialogViewImpl;
 import codenvy.client.mvp.views.MainPageView;
@@ -26,11 +24,8 @@ public class MainPaigePresenterImpl implements Presenter, MainPageView.Presenter
 
     private List<User> usersList;
 
-    private SimpleEventBus eventBus;
-
     public MainPaigePresenterImpl(MainPageView view, SimpleEventBus eventBus) {
         this.view = view;
-        this.eventBus = eventBus;
 
         this.view.setPresenter(this);
         this.view.setEventBus(eventBus);
