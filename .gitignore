@@ -1,5 +1,6 @@
 # Intellij
 .idea/
+.settings/
 *.iml
 *.iws
 
