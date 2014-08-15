@@ -1,9 +1,9 @@
 package codenvy.client.MainPaige;
 
+import codenvy.client.Dialog.DialogPresenter;
 import codenvy.client.MainPaige.events.DeleteUserEvent;
 import codenvy.client.MainPaige.events.DeleteUserEventHandler;
 import codenvy.client.mvp.models.User;
-import codenvy.client.Dialog.DialogPresenterImpl;
 import codenvy.client.Dialog.DialogViewImpl;
 
 import codenvy.client.mvp.Presenter;
@@ -17,11 +17,11 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
     private final MainPageView view;
 
-    private final DialogPresenterImpl dialogPresenter;
+    private final DialogPresenter dialogPresenter;
 
-    private final DialogPresenterImpl.Callback addCallback;
+    private final DialogPresenter.Callback addCallback;
 
-    private final DialogPresenterImpl.Callback editCallback;
+    private final DialogPresenter.Callback editCallback;
 
     private User selectedUser;
 
@@ -31,7 +31,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
         this.view = view;
         this.view.setPresenter(this);
 
-        dialogPresenter = new DialogPresenterImpl(new DialogViewImpl());
+        dialogPresenter = new DialogPresenter(new DialogViewImpl());
 
         usersList = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
             }
         });
 
-        addCallback = new DialogPresenterImpl.Callback() {
+        addCallback = new DialogPresenter.Callback() {
             @Override
             public void onSaveButtonClicked(User user) {
                 usersList.add(user);
@@ -53,7 +53,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
             }
         };
 
-        editCallback = new DialogPresenterImpl.Callback() {
+        editCallback = new DialogPresenter.Callback() {
             @Override
             public void onSaveButtonClicked(User user) {
                 usersList.add(usersList.indexOf(selectedUser), user);
