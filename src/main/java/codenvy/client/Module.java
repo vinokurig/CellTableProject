@@ -1,7 +1,9 @@
 package codenvy.client;
 
-import codenvy.client.MainPaige.MainPagePresenter;
-import codenvy.client.MainPaige.MainPageViewImpl;
+import codenvy.client.dialog.DialogPresenter;
+import codenvy.client.dialog.DialogViewImpl;
+import codenvy.client.mainPaige.MainPagePresenter;
+import codenvy.client.mainPaige.MainPageViewImpl;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -14,8 +16,10 @@ public class Module implements EntryPoint {
 
         SimpleEventBus eventBus = new SimpleEventBus();
 
-        final MainPagePresenter presenter = new MainPagePresenter(new MainPageViewImpl(eventBus), eventBus);
+        final DialogPresenter dialogPresenter = new DialogPresenter(new DialogViewImpl());
 
-        presenter.go(RootLayoutPanel.get());
+        final MainPagePresenter mainPagePresenter = new MainPagePresenter(new MainPageViewImpl(eventBus), dialogPresenter, eventBus);
+
+        mainPagePresenter.go(RootLayoutPanel.get());
     }
 }

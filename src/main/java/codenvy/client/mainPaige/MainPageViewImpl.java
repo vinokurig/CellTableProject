@@ -1,8 +1,8 @@
-package codenvy.client.MainPaige;
+package codenvy.client.mainPaige;
 
 import codenvy.client.MessageConstants;
 import codenvy.client.Resources;
-import codenvy.client.MainPaige.events.DeleteUserEvent;
+import codenvy.client.mainPaige.events.DeleteUserEvent;
 import codenvy.client.models.User;
 
 import com.google.gwt.cell.client.DateCell;
@@ -45,9 +45,9 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
-    private CellTable createTable() {
+    private CellTable<User> createTable() {
 
-        CellTable usersTable = new CellTable<User>();
+        CellTable<User> usersTable = new CellTable<>();
 
         usersTable.addStyleName(Resources.IMPL.Styles().cellTableStyle());
 
@@ -76,7 +76,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
             }
         };
 
-        final SingleSelectionModel<User> selModel = new SingleSelectionModel<User>();
+        final SingleSelectionModel<User> selModel = new SingleSelectionModel<>();
 
         usersTable.setSelectionModel(selModel);
 

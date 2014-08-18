@@ -1,4 +1,4 @@
-package codenvy.client.Dialog;
+package codenvy.client.dialog;
 
 import codenvy.client.MessageConstants;
 import com.google.gwt.core.client.GWT;

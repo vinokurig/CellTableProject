@@ -1,10 +1,8 @@
-package codenvy.client.Dialog;
+package codenvy.client.dialog;
 
-import codenvy.client.mvp.Presenter;
 import codenvy.client.models.User;
-import com.google.gwt.user.client.ui.HasWidgets;
 
-public class DialogPresenter implements Presenter, DialogView.ActionDelegate {
+public class DialogPresenter implements DialogView.ActionDelegate {
 
     public interface Callback {
         void onSaveButtonClicked(User user);
@@ -29,12 +27,6 @@ public class DialogPresenter implements Presenter, DialogView.ActionDelegate {
     @Override
     public void onCloseButtonClicked() {
         view.closeDialog();
-    }
-
-    @Override
-    public void go(HasWidgets container) {
-        container.clear();
-        container.add(view.asWidget());
     }
 
     public void showDialog(Callback callback, User editedRow) {

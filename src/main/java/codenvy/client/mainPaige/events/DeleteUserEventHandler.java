@@ -1,4 +1,4 @@
-package codenvy.client.MainPaige.events;
+package codenvy.client.mainPaige.events;
 
 import com.google.gwt.event.shared.EventHandler;
 

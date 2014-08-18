@@ -1,7 +1,6 @@
-package codenvy.client.Dialog;
+package codenvy.client.dialog;
 
 import codenvy.client.mvp.View;
-import com.google.gwt.user.client.ui.IsWidget;
 
 import java.util.Date;
 

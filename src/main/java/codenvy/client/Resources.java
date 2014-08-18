@@ -8,17 +8,18 @@ import com.google.gwt.resources.client.TextResource;
 
 public interface Resources extends ClientBundle {
 
+    public static final Resources IMPL = GWT.create(Resources.class);
+
     public interface Styles extends CssResource {
+
         String labelStyle();
 
         String textBoxStyle();
 
         String buttonStyle();
-
         String cellTableStyle();
-    }
 
-    public static final Resources IMPL = GWT.create(Resources.class);
+    }
 
     @Source("Styles.css")
     Styles Styles();

@@ -1,10 +1,10 @@
-package codenvy.client.MainPaige.events;
+package codenvy.client.mainPaige.events;
 
 import com.google.gwt.event.shared.GwtEvent;
 
 public class DeleteUserEvent extends GwtEvent<DeleteUserEventHandler>{
 
-    public static Type<DeleteUserEventHandler> TYPE = new Type<DeleteUserEventHandler>();
+    public static Type<DeleteUserEventHandler> TYPE = new Type<>();
 
     @Override
     public Type<DeleteUserEventHandler> getAssociatedType() {

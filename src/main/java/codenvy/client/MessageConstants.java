@@ -12,13 +12,11 @@ public interface MessageConstants extends Messages {
 
     String mpBtnDelete();
 
-
     String mpColName();
 
     String mpColAddress();
 
     String mpColBirthday();
-
 
     String dialogHeadLabel();
 
@@ -28,8 +26,8 @@ public interface MessageConstants extends Messages {
 
     String dialogBirthdayLabel();
 
-
     String dialogBtnSave();
 
     String dialogBtnClose();
+
 }
