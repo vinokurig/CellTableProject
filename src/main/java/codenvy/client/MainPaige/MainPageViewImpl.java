@@ -2,7 +2,7 @@ package codenvy.client.MainPaige;
 
 import codenvy.client.Resources;
 import codenvy.client.MainPaige.events.DeleteUserEvent;
-import codenvy.client.mvp.models.User;
+import codenvy.client.models.User;
 
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.core.client.GWT;
@@ -29,7 +29,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
     private static MainPageViewImplUiBinder uiBinder = GWT.create(MainPageViewImplUiBinder.class);
 
-    private ActionDelegate presenter;
+    private ActionDelegate delegate;
 
     private SimpleEventBus eventBus;
 
@@ -91,7 +91,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
             public void onSelectionChange(SelectionChangeEvent event) {
                 User selectedUser = selModel.getSelectedObject();
 
-                presenter.onUserSelected(selectedUser);
+                delegate.onUserSelected(selectedUser);
             }
         });
 
@@ -99,8 +99,8 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     }
 
     @Override
-    public void setPresenter(ActionDelegate presenter) {
-        this.presenter = presenter;
+    public void setDelegate(ActionDelegate delegate) {
+        this.delegate = delegate;
     }
 
     @Override
@@ -108,17 +108,17 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         usersTable.setRowData(users);
     }
 
-    @UiHandler("add")
+    @UiHandler("btnAdd")
     public void onAddButtonClicked(ClickEvent event) {
-        presenter.onAddButtonClicked();
+        delegate.onAddButtonClicked();
     }
 
-    @UiHandler("edit")
+    @UiHandler("btnEdit")
     public void onEditButtonClicked(ClickEvent event) {
-        presenter.onEditButtonClicked();
+        delegate.onEditButtonClicked();
     }
 
-    @UiHandler("delete")
+    @UiHandler("btnDelete")
     public void onDeleteButtonClicked(ClickEvent event) {
         eventBus.fireEvent(new DeleteUserEvent());
     }

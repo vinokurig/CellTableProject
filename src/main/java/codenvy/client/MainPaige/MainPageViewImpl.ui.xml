@@ -1,17 +1,20 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-     xmlns:g='urn:import:com.google.gwt.user.client.ui'
-     xmlns:ct='urn:import:com.google.gwt.user.cellview.client'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:ct='urn:import:com.google.gwt.user.cellview.client'>
 
     <ui:with field='resources' type='codenvy.client.Resources'/>
 
     <ui:style>
         .buttonStyle {
             margin: 6px;
+            width: 150px;
         }
+
         .textStyle {
             margin: 6px;
             padding: 3px;
         }
+
         .imageStyle {
             margin: 6px;
             width: 150px;
@@ -29,9 +32,9 @@
 
         <g:east size='170'>
             <g:FlowPanel>
-                <g:Button addStyleNames="{style.buttonStyle}" ui:field="add" text="Add" width="150px"/>
-                <g:Button addStyleNames="{style.buttonStyle}" ui:field="edit" text="Edit" width="150px"/>
-                <g:Button addStyleNames="{style.buttonStyle}" ui:field="delete" text="Delete" width="150px"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnAdd" text="Add"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnEdit" text="Edit"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnDelete" text="Delete"/>
 
                 <g:Label addStyleNames="{style.textStyle}" text="{resources.text.getText}"/>
 

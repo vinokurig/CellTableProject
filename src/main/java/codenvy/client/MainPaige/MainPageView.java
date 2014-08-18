@@ -1,13 +1,13 @@
 package codenvy.client.MainPaige;
 
-import codenvy.client.mvp.models.User;
-import com.google.gwt.user.client.ui.IsWidget;
+import codenvy.client.mvp.View;
+import codenvy.client.models.User;
 
 import java.util.List;
 
-public interface MainPageView extends IsWidget {
+public interface MainPageView extends View<MainPageView.ActionDelegate> {
 
-    public interface ActionDelegate {
+    interface ActionDelegate {
 
         void onAddButtonClicked();
 
@@ -19,5 +19,4 @@ public interface MainPageView extends IsWidget {
 
     void setUser(List<User> users);
 
-    void setPresenter(ActionDelegate presenter);
 }

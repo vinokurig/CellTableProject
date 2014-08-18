@@ -8,11 +8,6 @@ import com.google.gwt.resources.client.TextResource;
 
 public interface Resources extends ClientBundle {
 
-    public static final Resources IMPL = GWT.create(Resources.class);
-
-    @Source("Styles.css")
-    Styles Styles();
-
     public interface Styles extends CssResource {
         String labelStyle();
 
@@ -23,9 +18,15 @@ public interface Resources extends ClientBundle {
         String cellTableStyle();
     }
 
+    public static final Resources IMPL = GWT.create(Resources.class);
+
+    @Source("Styles.css")
+    Styles Styles();
+
     @Source("Text.txt")
     TextResource text();
 
-    @ImageResource.ImageOptions()
+    @Source("userImage.jpg")
     ImageResource userImage();
+
 }

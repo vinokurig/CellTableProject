@@ -1,18 +1,17 @@
 package codenvy.client.Dialog;
 
+import codenvy.client.mvp.View;
 import com.google.gwt.user.client.ui.IsWidget;
 
 import java.util.Date;
 
-public interface DialogView extends IsWidget {
+public interface DialogView extends View<DialogView.ActionDelegate> {
 
-    public interface Presenter {
+    public interface ActionDelegate {
         void onSaveButtonClicked();
 
         void onCloseButtonClicked();
     }
-
-    void setPresenter(Presenter presenter);
 
     void showDialog();
 

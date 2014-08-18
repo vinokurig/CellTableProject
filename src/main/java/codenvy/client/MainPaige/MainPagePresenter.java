@@ -1,12 +1,11 @@
 package codenvy.client.MainPaige;
 
 import codenvy.client.Dialog.DialogPresenter;
+import codenvy.client.Dialog.DialogViewImpl;
 import codenvy.client.MainPaige.events.DeleteUserEvent;
 import codenvy.client.MainPaige.events.DeleteUserEventHandler;
-import codenvy.client.mvp.models.User;
-import codenvy.client.Dialog.DialogViewImpl;
-
 import codenvy.client.mvp.Presenter;
+import codenvy.client.models.User;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
 
@@ -25,11 +24,11 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
     private User selectedUser;
 
-    private List<User> usersList;
+    private final List<User> usersList;
 
     public MainPagePresenter(MainPageView view, SimpleEventBus eventBus) {
         this.view = view;
-        this.view.setPresenter(this);
+        this.view.setDelegate(this);
 
         dialogPresenter = new DialogPresenter(new DialogViewImpl());
 

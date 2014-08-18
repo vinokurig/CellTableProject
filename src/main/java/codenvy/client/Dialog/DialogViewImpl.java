@@ -14,11 +14,12 @@ import java.util.Date;
 
 public class DialogViewImpl extends DialogBox implements DialogView {
 
-    interface DialogViewImplUiBinder extends UiBinder<Widget, DialogViewImpl> {}
+    interface DialogViewImplUiBinder extends UiBinder<Widget, DialogViewImpl> {
+    }
 
     private static DialogViewImplUiBinder uiBinder = GWT.create(DialogViewImplUiBinder.class);
 
-    private Presenter presenter;
+    private ActionDelegate delegate;
 
     @UiField
     TextBox name;
@@ -36,8 +37,8 @@ public class DialogViewImpl extends DialogBox implements DialogView {
     }
 
     @Override
-    public void setPresenter(Presenter presenter) {
-        this.presenter = presenter;
+    public void setDelegate(ActionDelegate delegate) {
+        this.delegate = delegate;
     }
 
     @Override
@@ -83,11 +84,11 @@ public class DialogViewImpl extends DialogBox implements DialogView {
 
     @UiHandler("saveButton")
     public void onSaveButtonClicked(ClickEvent event) {
-        presenter.onSaveButtonClicked();
+        delegate.onSaveButtonClicked();
     }
 
     @UiHandler("closeButton")
     public void onCloseButtonClicked(ClickEvent event) {
-        presenter.onCloseButtonClicked();
+        delegate.onCloseButtonClicked();
     }
 }

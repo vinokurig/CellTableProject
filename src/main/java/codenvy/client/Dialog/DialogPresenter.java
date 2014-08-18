@@ -1,11 +1,10 @@
 package codenvy.client.Dialog;
 
-import codenvy.client.mvp.models.User;
-
 import codenvy.client.mvp.Presenter;
+import codenvy.client.models.User;
 import com.google.gwt.user.client.ui.HasWidgets;
 
-public class DialogPresenter implements Presenter, DialogView.Presenter {
+public class DialogPresenter implements Presenter, DialogView.ActionDelegate {
 
     public interface Callback {
         void onSaveButtonClicked(User user);
@@ -17,7 +16,7 @@ public class DialogPresenter implements Presenter, DialogView.Presenter {
 
     public DialogPresenter(DialogView view) {
         this.view = view;
-        this.view.setPresenter(this);
+        this.view.setDelegate(this);
     }
 
     @Override
