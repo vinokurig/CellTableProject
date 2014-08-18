@@ -1,8 +1,14 @@
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:ct='urn:import:com.google.gwt.user.cellview.client'>
+<ui:UiBinder
+        xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:ct='urn:import:com.google.gwt.user.cellview.client'
+
+        ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+        ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field='resources' type='codenvy.client.Resources'/>
+    <ui:with field='messages' type='codenvy.client.MessageConstants'/>
 
     <ui:style>
         .buttonStyle {
@@ -32,9 +38,9 @@
 
         <g:east size='170'>
             <g:FlowPanel>
-                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnAdd" text="Add"/>
-                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnEdit" text="Edit"/>
-                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnDelete" text="Delete"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnAdd" text="{messages.mpBtnAdd}"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnEdit" text="{messages.mpBtnEdit}"/>
+                <g:Button addStyleNames="{style.buttonStyle}" ui:field="btnDelete" text="{messages.mpBtnDelete}"/>
 
                 <g:Label addStyleNames="{style.textStyle}" text="{resources.text.getText}"/>
 

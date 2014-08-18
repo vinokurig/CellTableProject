@@ -2,6 +2,7 @@ package codenvy.client;
 
 import codenvy.client.MainPaige.MainPagePresenter;
 import codenvy.client.MainPaige.MainPageViewImpl;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.RootLayoutPanel;

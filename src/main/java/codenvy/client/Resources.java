@@ -26,7 +26,7 @@ public interface Resources extends ClientBundle {
     @Source("Text.txt")
     TextResource text();
 
-    @Source("userImage.jpg")
+    @Source("UserImage.jpg")
     ImageResource userImage();
 
 }

@@ -1,5 +1,6 @@
 package codenvy.client.MainPaige;
 
+import codenvy.client.MessageConstants;
 import codenvy.client.Resources;
 import codenvy.client.MainPaige.events.DeleteUserEvent;
 import codenvy.client.models.User;
@@ -79,9 +80,9 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
         usersTable.setSelectionModel(selModel);
 
-        usersTable.addColumn(nameColumn, "Name");
-        usersTable.addColumn(addressColumn, "Address");
-        usersTable.addColumn(dateColumn, "Birthday");
+        usersTable.addColumn(nameColumn, MessageConstants.MESSAGES.mpColName());
+        usersTable.addColumn(addressColumn, MessageConstants.MESSAGES.mpColAddress());
+        usersTable.addColumn(dateColumn, MessageConstants.MESSAGES.mpColBirthday());
 
         usersTable.setColumnWidth(nameColumn, 40, Style.Unit.PCT);
         usersTable.setColumnWidth(addressColumn, 40, Style.Unit.PCT);

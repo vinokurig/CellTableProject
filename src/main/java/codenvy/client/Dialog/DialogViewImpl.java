@@ -1,5 +1,6 @@
 package codenvy.client.Dialog;
 
+import codenvy.client.MessageConstants;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -33,7 +34,7 @@ public class DialogViewImpl extends DialogBox implements DialogView {
     public DialogViewImpl() {
         add(uiBinder.createAndBindUi(this));
 
-        setText("User");
+        setText(MessageConstants.MESSAGES.dialogHeadLabel());
     }
 
     @Override
