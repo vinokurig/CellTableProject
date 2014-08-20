@@ -1,10 +1,10 @@
 package codenvy.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.Messages;
+import com.google.inject.Singleton;
 
+@Singleton
 public interface MessageConstants extends Messages {
-    public static final MessageConstants MESSAGES = GWT.create(MessageConstants.class);
 
     String mpBtnAdd();
 

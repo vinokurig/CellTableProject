@@ -1,6 +1,7 @@
 package codenvy.client.dialog;
 
 import codenvy.client.models.User;
+import com.google.inject.Inject;
 
 public class DialogPresenter implements DialogView.ActionDelegate {
 
@@ -11,7 +12,7 @@ public class DialogPresenter implements DialogView.ActionDelegate {
     private final DialogView view;
 
     private Callback callback;
-
+    @Inject
     public DialogPresenter(DialogView view) {
         this.view = view;
         this.view.setDelegate(this);

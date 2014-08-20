@@ -4,12 +4,10 @@ import codenvy.client.MessageConstants;
 import codenvy.client.Resources;
 import codenvy.client.mainPaige.events.DeleteUserEvent;
 import codenvy.client.models.User;
-
 import com.google.gwt.cell.client.DateCell;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -20,25 +18,37 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
+import javax.inject.Provider;
 import java.util.Date;
 import java.util.List;
 
 public class MainPageViewImpl extends Composite implements MainPageView {
 
-    interface MainPageViewImplUiBinder extends UiBinder<Widget, MainPageViewImpl> {}
-
-    private static MainPageViewImplUiBinder uiBinder = GWT.create(MainPageViewImplUiBinder.class);
+    @Singleton
+    interface MainPageViewImplUiBinder extends UiBinder<Widget, MainPageViewImpl> {
+    }
 
     private ActionDelegate delegate;
 
-    private SimpleEventBus eventBus;
+    private final Provider<EventBus> eventBus;
+
+    @UiField(provided = true)
+    MessageConstants messages;
+
+    @UiField(provided = true)
+    Resources resources;
 
     @UiField(provided = true)
     CellTable<User> usersTable;
 
-    public MainPageViewImpl(SimpleEventBus eventBus) {
+    @Inject
+    public MainPageViewImpl(MainPageViewImplUiBinder uiBinder, Provider<EventBus> eventBus, MessageConstants messages, Resources resources) {
         this.eventBus = eventBus;
+        this.messages = messages;
+        this.resources = resources;
 
         usersTable = createTable();
 
@@ -49,7 +59,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
         CellTable<User> usersTable = new CellTable<>();
 
-        usersTable.addStyleName(Resources.IMPL.Styles().cellTableStyle());
+        usersTable.addStyleName(resources.styles().cellTableStyle());
 
         // Add a text column to show the name.
         TextColumn<User> nameColumn = new TextColumn<User>() {
@@ -80,9 +90,9 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
         usersTable.setSelectionModel(selModel);
 
-        usersTable.addColumn(nameColumn, MessageConstants.MESSAGES.mpColName());
-        usersTable.addColumn(addressColumn, MessageConstants.MESSAGES.mpColAddress());
-        usersTable.addColumn(dateColumn, MessageConstants.MESSAGES.mpColBirthday());
+        usersTable.addColumn(nameColumn, messages.mpColName());
+        usersTable.addColumn(addressColumn, messages.mpColAddress());
+        usersTable.addColumn(dateColumn, messages.mpColBirthday());
 
         usersTable.setColumnWidth(nameColumn, 40, Style.Unit.PCT);
         usersTable.setColumnWidth(addressColumn, 40, Style.Unit.PCT);
@@ -121,7 +131,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
     @UiHandler("btnDelete")
     public void onDeleteButtonClicked(ClickEvent event) {
-        eventBus.fireEvent(new DeleteUserEvent());
+        eventBus.get().fireEvent(new DeleteUserEvent());
     }
 
 }

@@ -1,9 +1,11 @@
 package codenvy.client.dialog;
 
 import codenvy.client.mvp.View;
+import com.google.inject.ImplementedBy;
 
 import java.util.Date;
 
+@ImplementedBy(DialogViewImpl.class)
 public interface DialogView extends View<DialogView.ActionDelegate> {
 
     public interface ActionDelegate {
