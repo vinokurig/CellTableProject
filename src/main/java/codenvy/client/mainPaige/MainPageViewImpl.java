@@ -33,8 +33,6 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
     private ActionDelegate delegate;
 
-    private final Provider<EventBus> eventBus;
-
     @UiField(provided = true)
     MessageConstants messages;
 
@@ -45,8 +43,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
     CellTable<User> usersTable;
 
     @Inject
-    public MainPageViewImpl(MainPageViewImplUiBinder uiBinder, Provider<EventBus> eventBus, MessageConstants messages, Resources resources) {
-        this.eventBus = eventBus;
+    public MainPageViewImpl(MainPageViewImplUiBinder uiBinder, MessageConstants messages, Resources resources) {
         this.messages = messages;
         this.resources = resources;
 
@@ -131,7 +128,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
     @UiHandler("btnDelete")
     public void onDeleteButtonClicked(ClickEvent event) {
-        eventBus.get().fireEvent(new DeleteUserEvent());
+        delegate.onDeleteButtonClicked();
     }
 
 }

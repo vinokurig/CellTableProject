@@ -13,6 +13,8 @@ public interface MainPageView extends View<MainPageView.ActionDelegate> {
 
         void onEditButtonClicked();
 
+        void onDeleteButtonClicked();
+
         void onUserSelected(User user);
 
     }
