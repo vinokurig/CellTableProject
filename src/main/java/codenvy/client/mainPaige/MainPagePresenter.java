@@ -93,7 +93,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
         if (selectedUser != null) {
             usersList.remove(selectedUser);
 
-            MainPagePresenter.this.view.setUser(usersList);
+            view.setUser(usersList);
         }
     }
 }
