@@ -42,6 +42,8 @@ public class DialogPresenterTest {
         verify(dialogView).setName(eq(""));
         verify(dialogView).setAddress(eq(""));
         verify(dialogView).setBirthday(null);
+
+        verify(dialogView).showDialog();
     }
 
     @Test
@@ -55,6 +57,8 @@ public class DialogPresenterTest {
         verify(dialogView).setName(eq("name"));
         verify(dialogView).setAddress(eq("address"));
         verify(dialogView).setBirthday(eq(someDate));
+
+        verify(dialogView).showDialog();
     }
 
     @Test

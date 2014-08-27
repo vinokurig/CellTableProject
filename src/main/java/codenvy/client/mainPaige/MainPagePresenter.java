@@ -31,7 +31,9 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
     @Inject
     public MainPagePresenter(MainPageView view, DialogPresenter dialogPresenter, EventBus eventBus) {
         this.view = view;
+
         this.view.setDelegate(this);
+
         this.eventBus = eventBus;
 
         this.dialogPresenter = dialogPresenter;
@@ -85,6 +87,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
     @Override
     public void go(HasWidgets container) {
         container.clear();
+
         container.add(view.asWidget());
     }
 
