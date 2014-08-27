@@ -67,9 +67,9 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
     @Override
     public void onEditButtonClicked() {
-        if (selectedUser != null) {
+        //if (selectedUser != null) {
             dialogPresenter.showDialog(editCallback, selectedUser);
-        }
+        //}
     }
 
     @Override
