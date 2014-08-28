@@ -7,8 +7,10 @@ import codenvy.client.mainPaige.events.DeleteUserEvent;
 import codenvy.client.models.User;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Widget;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
@@ -16,10 +18,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyObject;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -52,27 +54,23 @@ public class MainPagePresenterTest {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 DialogPresenter.Callback callback = (DialogPresenter.Callback) invocation.getArguments()[0];
+
                 callback.onSaveButtonClicked(user);
 
                 return null;
             }
-        }).when(dialogPresenter).showDialog((DialogPresenter.Callback) anyObject(), eq((User) null));
-
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                List<User> usersList = (List<User>) invocation.getArguments()[0];
-
-                assertTrue(usersList.contains(user));
-
-                return null;
-            }
-        }).when(mainPageView).setUser(anyListOf(User.class));
+        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
 
         mainPagePresenter.onAddButtonClicked();
 
-        verify(dialogPresenter).showDialog((DialogPresenter.Callback) anyObject(), eq((User) null));
+        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
 
-        verify(mainPageView).setUser(anyListOf(User.class));
+        ArgumentCaptor<ArrayList> usersList = ArgumentCaptor.forClass(ArrayList.class);
+
+        verify(mainPageView).setUser(usersList.capture());
+
+        assertTrue(usersList.getValue().contains(user));
+        assertEquals(1, usersList.getValue().size());
     }
 
     @Test
@@ -81,54 +79,47 @@ public class MainPagePresenterTest {
             public Object answer(InvocationOnMock invocation) {
                 DialogPresenter.Callback callback = (DialogPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
+
                 return null;
             }
-        }).when(dialogPresenter).showDialog((DialogPresenter.Callback) anyObject(), (User) anyObject());
+        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
 
         mainPagePresenter.onAddButtonClicked();
+
         mainPagePresenter.onUserSelected(user);
 
+        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
+
         reset(dialogPresenter);
+
         reset(mainPageView);
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 DialogPresenter.Callback callback = (DialogPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
-                return null;
-            }
-        }).when(dialogPresenter).showDialog((DialogPresenter.Callback) anyObject(), (User) anyObject());
-
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                ArrayList<User> usersList = (ArrayList<User>) invocation.getArguments()[0];
-
-                assertTrue(usersList.contains(user));
 
                 return null;
             }
-        }).when(mainPageView).setUser(anyListOf(User.class));
+        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
 
         mainPagePresenter.onEditButtonClicked();
 
-        verify(dialogPresenter).showDialog((DialogPresenter.Callback) anyObject(), (User) anyObject());
+        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
 
-        verify(mainPageView).setUser(anyListOf(User.class));
+        ArgumentCaptor<ArrayList> usersList = ArgumentCaptor.forClass(ArrayList.class);
+
+        verify(mainPageView).setUser(usersList.capture());
+
+        assertTrue(usersList.getValue().contains(user));
+        assertEquals(1, usersList.getValue().size());
     }
 
     @Test
     public void shouldUnselectedUserEdited() {
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                User user = (User) invocation.getArguments()[1];
-
-                assertNull(user);
-
-                return null;
-            }
-        }).when(dialogPresenter).showDialog((DialogPresenter.Callback) anyObject(), (User) anyObject());
-
         mainPagePresenter.onEditButtonClicked();
+
+        verify(dialogPresenter, never()).showDialog(any(DialogPresenter.Callback.class), any(User.class));
     }
 
     @Test
@@ -139,38 +130,32 @@ public class MainPagePresenterTest {
                 callback.onSaveButtonClicked(user);
                 return null;
             }
-        }).when(dialogPresenter).showDialog((DialogPresenter.Callback) anyObject(), eq((User) null));
+        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
 
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                ArrayList<User> usersList = (ArrayList<User>) invocation.getArguments()[0];
-
-                assertTrue(usersList.contains(user));
-
-                return null;
-            }
-        }).when(mainPageView).setUser(anyListOf(User.class));
 
         mainPagePresenter.onAddButtonClicked();
 
+        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
+
+        ArgumentCaptor<ArrayList> usersList = ArgumentCaptor.forClass(ArrayList.class);
+
+        verify(mainPageView).setUser(usersList.capture());
+
+        assertTrue(usersList.getValue().contains(user));
+        assertEquals(1, usersList.getValue().size());
+
         reset(dialogPresenter);
+
         reset(mainPageView);
-
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                ArrayList<User> usersList = (ArrayList<User>) invocation.getArguments()[0];
-
-                assertFalse(usersList.contains(user));
-
-                return null;
-            }
-        }).when(mainPageView).setUser(anyListOf(User.class));
 
         mainPagePresenter.onUserSelected(user);
 
         mainPagePresenter.deleteUser(event);
 
-        verify(mainPageView).setUser(anyListOf(User.class));
+        verify(mainPageView).setUser(usersList.capture());
+
+        assertFalse(usersList.getValue().contains(user));
+        assertEquals(0, usersList.getValue().size());
     }
 
     @Test
@@ -185,8 +170,9 @@ public class MainPagePresenterTest {
         mainPagePresenter.go(container);
 
         verify(container).clear();
+        verify(container).add(any(Widget.class));
 
-        verify(container).add(mainPageView.asWidget());
+        verify(mainPageView).asWidget();
     }
 
     @Test
@@ -195,4 +181,5 @@ public class MainPagePresenterTest {
 
         verify(eventBus).fireEvent(isA(DeleteUserEvent.class));
     }
+
 }

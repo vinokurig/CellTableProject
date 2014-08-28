@@ -5,23 +5,23 @@ import codenvy.client.dialog.DialogView;
 import codenvy.client.models.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DialogPresenterTest {
+    public static final String NAME = "name";
 
-    private final Date someDate = new Date();
+    public static final String ADDRESS = "address";
+
+    public static final Date BIRTHDAY = new Date();
 
     @Mock
     private DialogView dialogView;
@@ -48,46 +48,37 @@ public class DialogPresenterTest {
 
     @Test
     public void shouldFilledDialogShown() {
-        when(user.getName()).thenReturn("name");
-        when(user.getAddress()).thenReturn("address");
-        when(user.getBirthday()).thenReturn(someDate);
+        when(user.getName()).thenReturn(NAME);
+        when(user.getAddress()).thenReturn(ADDRESS);
+        when(user.getBirthday()).thenReturn(BIRTHDAY);
 
         dialogPresenter.showDialog(callback, user);
 
-        verify(dialogView).setName(eq("name"));
-        verify(dialogView).setAddress(eq("address"));
-        verify(dialogView).setBirthday(eq(someDate));
+        verify(dialogView).setName(eq(NAME));
+        verify(dialogView).setAddress(eq(ADDRESS));
+        verify(dialogView).setBirthday(eq(BIRTHDAY));
 
         verify(dialogView).showDialog();
     }
 
     @Test
     public void shouldSaveUser() {
-        when(dialogView.getName()).thenReturn("name");
-        when(dialogView.getAddress()).thenReturn("address");
-        when(dialogView.getBirthday()).thenReturn(someDate);
-
-        doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) {
-                User user = (User) invocation.getArguments()[0];
-
-                assertEquals("name", user.getName());
-                assertEquals("address", user.getAddress());
-                assertEquals(someDate, user.getBirthday());
-
-                return null;
-            }
-        }).when(callback).onSaveButtonClicked((User) anyObject());
+        when(dialogView.getName()).thenReturn(NAME);
+        when(dialogView.getAddress()).thenReturn(ADDRESS);
+        when(dialogView.getBirthday()).thenReturn(BIRTHDAY);
 
         dialogPresenter.showDialog(callback, user);
+
         dialogPresenter.onSaveButtonClicked();
 
-        verify(dialogView).setName(anyString());
-        verify(dialogView).setAddress(anyString());
-        verify(dialogView).setBirthday((Date) anyObject());
+        ArgumentCaptor<User> user = ArgumentCaptor.forClass(User.class);
 
-        verify(dialogView).showDialog();
+        verify(callback).onSaveButtonClicked(user.capture());
+
+        assertEquals(NAME, user.getValue().getName());
+        assertEquals(ADDRESS, user.getValue().getAddress());
+        assertEquals(BIRTHDAY, user.getValue().getBirthday());
+
         verify(dialogView).closeDialog();
     }
 
