@@ -83,10 +83,6 @@ public class MainPagePresenterTest {
 
         mainPagePresenter.onAddButtonClicked();
 
-        mainPagePresenter.onUserSelected(user);
-
-        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
-
         reset(dialogPresenter);
         reset(mainPageView);
 
@@ -98,6 +94,8 @@ public class MainPagePresenterTest {
                 return null;
             }
         }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
+
+        mainPagePresenter.onUserSelected(user);
 
         mainPagePresenter.onEditButtonClicked();
 
@@ -127,13 +125,6 @@ public class MainPagePresenterTest {
         }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
 
         mainPagePresenter.onAddButtonClicked();
-
-        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
-
-        verify(mainPageView).setUser(usersList.capture());
-
-        assertTrue(usersList.getValue().contains(user));
-        assertEquals(1, usersList.getValue().size());
 
         reset(dialogPresenter);
         reset(mainPageView);
