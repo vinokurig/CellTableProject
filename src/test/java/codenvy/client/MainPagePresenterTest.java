@@ -11,13 +11,14 @@ import com.google.gwt.user.client.ui.Widget;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.eq;
@@ -26,14 +27,14 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class MainPagePresenterTest {
 
+    @Captor
+    ArgumentCaptor<List<User>> usersList;
+
     @Mock
     private User user;
 
     @Mock
     private EventBus eventBus;
-
-    @Mock
-    private HasWidgets container;
 
     @Mock
     private DeleteUserEvent event;
@@ -62,8 +63,6 @@ public class MainPagePresenterTest {
         mainPagePresenter.onAddButtonClicked();
 
         verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
-
-        ArgumentCaptor<ArrayList> usersList = ArgumentCaptor.forClass(ArrayList.class);
 
         verify(mainPageView).setUser(usersList.capture());
 
@@ -104,8 +103,6 @@ public class MainPagePresenterTest {
 
         verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
 
-        ArgumentCaptor<ArrayList> usersList = ArgumentCaptor.forClass(ArrayList.class);
-
         verify(mainPageView).setUser(usersList.capture());
 
         assertTrue(usersList.getValue().contains(user));
@@ -132,8 +129,6 @@ public class MainPagePresenterTest {
         mainPagePresenter.onAddButtonClicked();
 
         verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
-
-        ArgumentCaptor<ArrayList> usersList = ArgumentCaptor.forClass(ArrayList.class);
 
         verify(mainPageView).setUser(usersList.capture());
 
@@ -162,6 +157,8 @@ public class MainPagePresenterTest {
 
     @Test
     public void shouldPresenterGo() {
+        HasWidgets container = mock(HasWidgets.class);
+
         mainPagePresenter.go(container);
 
         verify(container).clear();

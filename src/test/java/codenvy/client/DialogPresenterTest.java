@@ -17,11 +17,11 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DialogPresenterTest {
-    public static final String NAME = "name";
+    private static final String NAME = "name";
 
-    public static final String ADDRESS = "address";
+    private static final String ADDRESS = "address";
 
-    public static final Date BIRTHDAY = new Date();
+    private static final Date BIRTHDAY = new Date();
 
     @Mock
     private DialogView dialogView;
@@ -30,7 +30,7 @@ public class DialogPresenterTest {
     private DialogPresenter.Callback callback;
 
     @Mock
-    User user;
+    private User user;
 
     @InjectMocks
     private DialogPresenter dialogPresenter;
