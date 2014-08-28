@@ -132,7 +132,6 @@ public class MainPagePresenterTest {
             }
         }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
 
-
         mainPagePresenter.onAddButtonClicked();
 
         verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
