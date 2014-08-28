@@ -68,7 +68,6 @@ public class DialogPresenterTest {
         when(dialogView.getBirthday()).thenReturn(BIRTHDAY);
 
         dialogPresenter.showDialog(callback, user);
-
         dialogPresenter.onSaveButtonClicked();
 
         ArgumentCaptor<User> user = ArgumentCaptor.forClass(User.class);
