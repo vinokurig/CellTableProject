@@ -30,7 +30,7 @@ public class DialogPresenterTest {
     private DialogPresenter.Callback callback;
 
     @Mock
-    private User user;
+    User user;
 
     @InjectMocks
     private DialogPresenter dialogPresenter;

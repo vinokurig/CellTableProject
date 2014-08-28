@@ -19,9 +19,7 @@ import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -91,7 +89,6 @@ public class MainPagePresenterTest {
         verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
 
         reset(dialogPresenter);
-
         reset(mainPageView);
 
         doAnswer(new Answer() {
@@ -144,7 +141,6 @@ public class MainPagePresenterTest {
         assertEquals(1, usersList.getValue().size());
 
         reset(dialogPresenter);
-
         reset(mainPageView);
 
         mainPagePresenter.onUserSelected(user);
