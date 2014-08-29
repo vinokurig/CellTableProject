@@ -64,6 +64,9 @@ public class NotesPresenterTest {
 
         verify(callback).onSaveButtonClicked(user.capture());
 
+        assertEquals(NAME, user.getValue().getName());
+        assertEquals(BIRTHDAY, user.getValue().getBirthday());
+        assertEquals(ADDRESS, user.getValue().getAddress());
         assertEquals(NOTES, user.getValue().getNotes());
 
         verify(notesView).closeNotes();
