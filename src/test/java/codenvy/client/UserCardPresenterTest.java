@@ -17,6 +17,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserCardPresenterTest {
+
     private static final String NAME = "name";
 
     private static final String ADDRESS = "address";

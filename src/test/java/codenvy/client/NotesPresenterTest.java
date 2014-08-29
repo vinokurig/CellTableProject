@@ -10,11 +10,19 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NotesPresenterTest {
+
+    private static final String NAME = "name";
+
+    private static final String ADDRESS = "address";
+
+    private static final Date BIRTHDAY = new Date();
 
     private static final String NOTES = "notes";
 
@@ -43,6 +51,10 @@ public class NotesPresenterTest {
 
     @Test
     public void shouldSaveNote() {
+        when(user.getName()).thenReturn(NAME);
+        when(user.getBirthday()).thenReturn(BIRTHDAY);
+        when(user.getAddress()).thenReturn(ADDRESS);
+
         when(notesView.getNotesText()).thenReturn(NOTES);
 
         notesPresenter.showNotes(callback, user);
