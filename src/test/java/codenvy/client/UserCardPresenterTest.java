@@ -23,6 +23,8 @@ public class UserCardPresenterTest {
 
     private static final Date BIRTHDAY = new Date();
 
+    private static final String NOTES = "notes";
+
     @Mock
     private UserCardView userCardView;
 
@@ -42,6 +44,7 @@ public class UserCardPresenterTest {
         verify(userCardView).setName(eq(""));
         verify(userCardView).setAddress(eq(""));
         verify(userCardView).setBirthday(null);
+        verify(userCardView).setNotes("");
 
         verify(userCardView).showDialog();
     }
@@ -51,12 +54,14 @@ public class UserCardPresenterTest {
         when(user.getName()).thenReturn(NAME);
         when(user.getAddress()).thenReturn(ADDRESS);
         when(user.getBirthday()).thenReturn(BIRTHDAY);
+        when(user.getNotes()).thenReturn(NOTES);
 
         userCardPresenter.showDialog(callback, user);
 
         verify(userCardView).setName(eq(NAME));
         verify(userCardView).setAddress(eq(ADDRESS));
         verify(userCardView).setBirthday(eq(BIRTHDAY));
+        verify(userCardView).setNotes(eq(NOTES));
 
         verify(userCardView).showDialog();
     }
@@ -66,6 +71,7 @@ public class UserCardPresenterTest {
         when(userCardView.getName()).thenReturn(NAME);
         when(userCardView.getAddress()).thenReturn(ADDRESS);
         when(userCardView.getBirthday()).thenReturn(BIRTHDAY);
+        when(userCardView.getNotes()).thenReturn(NOTES);
 
         userCardPresenter.showDialog(callback, user);
         userCardPresenter.onSaveButtonClicked();
@@ -77,6 +83,7 @@ public class UserCardPresenterTest {
         assertEquals(NAME, user.getValue().getName());
         assertEquals(ADDRESS, user.getValue().getAddress());
         assertEquals(BIRTHDAY, user.getValue().getBirthday());
+        assertEquals(NOTES, user.getValue().getNotes());
 
         verify(userCardView).closeDialog();
     }

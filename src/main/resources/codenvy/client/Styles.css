@@ -26,8 +26,12 @@
     float: left;
 }
 
-.notesTexAreaStyle {
+.notesTextAreaStyle {
     margin: 6px;
     width: 230px;
     height: 70px;
+}
+
+.notesButtonStyle {
+    float: right;
 }

@@ -20,7 +20,9 @@ public interface Resources extends ClientBundle {
 
         String userCardTexAreaStyle();
 
-        String notesTexAreaStyle();
+        String notesTextAreaStyle();
+
+        String notesButtonStyle();
     }
 
     @Source("Styles.css")

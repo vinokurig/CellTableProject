@@ -1,5 +1,6 @@
 package codenvy.client;
 
+import codenvy.client.notes.NotesPresenter;
 import codenvy.client.userCard.UserCardPresenter;
 import codenvy.client.mainPaige.MainPagePresenter;
 import codenvy.client.mainPaige.MainPageView;
@@ -44,6 +45,9 @@ public class MainPagePresenterTest {
 
     @Mock
     private UserCardPresenter userCardPresenter;
+
+    @Mock
+    private NotesPresenter notesPresenter;
 
     @InjectMocks
     private MainPagePresenter mainPagePresenter;
@@ -165,4 +169,40 @@ public class MainPagePresenterTest {
         verify(eventBus).fireEvent(isA(DeleteUserEvent.class));
     }
 
+    @Test
+    public void shouldNotesUsed() {
+        doAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                callback.onSaveButtonClicked(user);
+
+                return null;
+            }
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), any(User.class));
+
+        mainPagePresenter.onAddButtonClicked();
+
+        reset(userCardPresenter);
+        reset(mainPageView);
+
+        doAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
+                callback.onSaveButtonClicked(user);
+
+                return null;
+            }
+        }).when(notesPresenter).showNotes(any(NotesPresenter.Callback.class), any(User.class));
+
+        mainPagePresenter.onUserSelected(user);
+
+        mainPagePresenter.onUserClicked(user);
+
+        verify(notesPresenter).showNotes(any(NotesPresenter.Callback.class), any(User.class));
+
+        verify(mainPageView).setUser(usersList.capture());
+
+        assertTrue(usersList.getValue().contains(user));
+        assertEquals(1, usersList.getValue().size());
+    }
 }
