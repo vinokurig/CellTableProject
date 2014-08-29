@@ -1,6 +1,6 @@
 package codenvy.client;
 
-import codenvy.client.dialog.DialogPresenter;
+import codenvy.client.userCard.UserCardPresenter;
 import codenvy.client.mainPaige.MainPagePresenter;
 import codenvy.client.mainPaige.MainPageView;
 import codenvy.client.mainPaige.events.DeleteUserEvent;
@@ -43,7 +43,7 @@ public class MainPagePresenterTest {
     private MainPageView mainPageView;
 
     @Mock
-    private DialogPresenter dialogPresenter;
+    private UserCardPresenter userCardPresenter;
 
     @InjectMocks
     private MainPagePresenter mainPagePresenter;
@@ -52,17 +52,17 @@ public class MainPagePresenterTest {
     public void shouldUserAdded() {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                DialogPresenter.Callback callback = (DialogPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
 
                 callback.onSaveButtonClicked(user);
 
                 return null;
             }
-        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
 
         mainPagePresenter.onAddButtonClicked();
 
-        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
+        verify(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
 
         verify(mainPageView).setUser(usersList.capture());
 
@@ -74,32 +74,32 @@ public class MainPagePresenterTest {
     public void shouldSelectedUserEdited() {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                DialogPresenter.Callback callback = (DialogPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
             }
-        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), any(User.class));
 
         mainPagePresenter.onAddButtonClicked();
 
-        reset(dialogPresenter);
+        reset(userCardPresenter);
         reset(mainPageView);
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                DialogPresenter.Callback callback = (DialogPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
             }
-        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), any(User.class));
 
         mainPagePresenter.onUserSelected(user);
 
         mainPagePresenter.onEditButtonClicked();
 
-        verify(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), any(User.class));
+        verify(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), any(User.class));
 
         verify(mainPageView).setUser(usersList.capture());
 
@@ -111,22 +111,22 @@ public class MainPagePresenterTest {
     public void shouldUnselectedUserEdited() {
         mainPagePresenter.onEditButtonClicked();
 
-        verify(dialogPresenter, never()).showDialog(any(DialogPresenter.Callback.class), any(User.class));
+        verify(userCardPresenter, never()).showDialog(any(UserCardPresenter.Callback.class), any(User.class));
     }
 
     @Test
     public void shouldSelectedUserDeleted() {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                DialogPresenter.Callback callback = (DialogPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
                 return null;
             }
-        }).when(dialogPresenter).showDialog(any(DialogPresenter.Callback.class), eq((User) null));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
 
         mainPagePresenter.onAddButtonClicked();
 
-        reset(dialogPresenter);
+        reset(userCardPresenter);
         reset(mainPageView);
 
         mainPagePresenter.onUserSelected(user);

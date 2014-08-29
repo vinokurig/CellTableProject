@@ -1,10 +1,11 @@
 package codenvy.client.mainPaige;
 
-import codenvy.client.dialog.DialogPresenter;
+import codenvy.client.userCard.UserCardPresenter;
 import codenvy.client.mainPaige.events.DeleteUserEvent;
 import codenvy.client.mainPaige.events.DeleteUserEventHandler;
 import codenvy.client.models.User;
 import codenvy.client.mvp.Presenter;
+import codenvy.client.notes.NotesPresenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.inject.Inject;
@@ -16,33 +17,39 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
     private final MainPageView view;
 
-    private final DialogPresenter dialogPresenter;
+    private final UserCardPresenter userCardPresenter;
 
-    private final DialogPresenter.Callback addCallback;
+    private final NotesPresenter notesPresenter;
 
-    private final DialogPresenter.Callback editCallback;
+    private final UserCardPresenter.Callback UserCardAddCallback;
+
+    private final UserCardPresenter.Callback UserCardEditCallback;
+
+    private final NotesPresenter.Callback notesEditCallback;
 
     private final EventBus eventBus;
 
-    private User selectedUser;
-
     private final List<User> usersList;
 
+    private User selectedUser;
+
     @Inject
-    public MainPagePresenter(MainPageView view, DialogPresenter dialogPresenter, EventBus eventBus) {
+    public MainPagePresenter(MainPageView view, UserCardPresenter userCardPresenter, NotesPresenter notesPresenter, EventBus eventBus) {
         this.view = view;
 
         this.view.setDelegate(this);
 
         this.eventBus = eventBus;
 
-        this.dialogPresenter = dialogPresenter;
+        this.userCardPresenter = userCardPresenter;
+
+        this.notesPresenter = notesPresenter;
 
         usersList = new ArrayList<>();
 
         eventBus.addHandler(DeleteUserEvent.TYPE, this);
 
-        addCallback = new DialogPresenter.Callback() {
+        UserCardAddCallback = new UserCardPresenter.Callback() {
             @Override
             public void onSaveButtonClicked(User user) {
                 usersList.add(user);
@@ -51,7 +58,17 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
             }
         };
 
-        editCallback = new DialogPresenter.Callback() {
+        UserCardEditCallback = new UserCardPresenter.Callback() {
+            @Override
+            public void onSaveButtonClicked(User user) {
+                usersList.add(usersList.indexOf(selectedUser), user);
+                usersList.remove(selectedUser);
+
+                MainPagePresenter.this.view.setUser(usersList);
+            }
+        };
+
+        notesEditCallback = new NotesPresenter.Callback() {
             @Override
             public void onSaveButtonClicked(User user) {
                 usersList.add(usersList.indexOf(selectedUser), user);
@@ -64,13 +81,13 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
     @Override
     public void onAddButtonClicked() {
-        dialogPresenter.showDialog(addCallback, null);
+        userCardPresenter.showDialog(UserCardAddCallback, null);
     }
 
     @Override
     public void onEditButtonClicked() {
         if (selectedUser != null) {
-            dialogPresenter.showDialog(editCallback, selectedUser);
+            userCardPresenter.showDialog(UserCardEditCallback, selectedUser);
         }
     }
 
@@ -82,6 +99,11 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
     @Override
     public void onUserSelected(User selectedUser) {
         this.selectedUser = selectedUser;
+    }
+
+    @Override
+    public void onUserClicked(User selectedUser) {
+        notesPresenter.showNotes(notesEditCallback, selectedUser);
     }
 
     @Override

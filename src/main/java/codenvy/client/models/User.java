@@ -10,22 +10,29 @@ public class User{
 
     private String address;
 
-    public User(String name, Date birthday, String address) {
+    private String notes;
+
+    public User(String name, Date birthday, String address, String notes) {
         this.name = name;
         this.address = address;
         this.birthday = birthday;
+        this.notes = notes;
     }
 
     public String getName() {
         return name;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
     public String getAddress() {
         return address;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public String getNotes() {
+        return notes;
     }
 
 }

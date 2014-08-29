@@ -2,18 +2,19 @@ package codenvy.client.mainPaige;
 
 import codenvy.client.MessageConstants;
 import codenvy.client.Resources;
-import codenvy.client.mainPaige.events.DeleteUserEvent;
 import codenvy.client.models.User;
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -21,7 +22,6 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import javax.inject.Provider;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +59,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         usersTable.addStyleName(resources.styles().cellTableStyle());
 
         // Add a text column to show the name.
-        TextColumn<User> nameColumn = new TextColumn<User>() {
+        final TextColumn<User> nameColumn = new TextColumn<User>() {
             @Override
             public String getValue(User object) {
                 return object.getName();
@@ -68,7 +68,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
         // Add a date column to show the birthday.
         DateCell dateCell = new DateCell();
-        Column<User, Date> dateColumn = new Column<User, Date>(dateCell) {
+        final Column<User, Date> dateColumn = new Column<User, Date>(dateCell) {
             @Override
             public Date getValue(User object) {
                 return object.getBirthday();
@@ -76,7 +76,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         };
 
         // Add a text column to show the address.
-        TextColumn<User> addressColumn = new TextColumn<User>() {
+        final TextColumn<User> addressColumn = new TextColumn<User>() {
             @Override
             public String getValue(User object) {
                 return object.getAddress();
@@ -102,6 +102,13 @@ public class MainPageViewImpl extends Composite implements MainPageView {
                 delegate.onUserSelected(selectedUser);
             }
         });
+
+        usersTable.addDomHandler(new DoubleClickHandler() {
+            @Override
+            public void onDoubleClick(DoubleClickEvent event) {
+                delegate.onUserClicked(selModel.getSelectedObject());
+            }
+        }, DoubleClickEvent.getType());
 
         return usersTable;
     }

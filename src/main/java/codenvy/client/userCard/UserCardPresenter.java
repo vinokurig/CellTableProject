@@ -1,26 +1,27 @@
-package codenvy.client.dialog;
+package codenvy.client.userCard;
 
 import codenvy.client.models.User;
 import com.google.inject.Inject;
 
-public class DialogPresenter implements DialogView.ActionDelegate {
+public class UserCardPresenter implements UserCardView.ActionDelegate {
 
     public interface Callback {
         void onSaveButtonClicked(User user);
     }
 
-    private final DialogView view;
+    private final UserCardView view;
 
     private Callback callback;
+
     @Inject
-    public DialogPresenter(DialogView view) {
+    public UserCardPresenter(UserCardView view) {
         this.view = view;
         this.view.setDelegate(this);
     }
 
     @Override
     public void onSaveButtonClicked() {
-        callback.onSaveButtonClicked(new User(view.getName(), view.getBirthday(), view.getAddress()));
+        callback.onSaveButtonClicked(new User(view.getName(), view.getBirthday(), view.getAddress(), view.getNotes()));
 
         view.closeDialog();
     }
@@ -36,6 +37,7 @@ public class DialogPresenter implements DialogView.ActionDelegate {
         view.setName(editedRow == null ? "" : editedRow.getName());
         view.setAddress(editedRow == null ? "" : editedRow.getAddress());
         view.setBirthday(editedRow == null ? null : editedRow.getBirthday());
+        view.setNotes(editedRow == null ? "" : editedRow.getNotes());
 
         view.showDialog();
     }

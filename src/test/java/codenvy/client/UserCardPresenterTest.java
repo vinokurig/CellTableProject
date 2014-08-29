@@ -1,7 +1,7 @@
 package codenvy.client;
 
-import codenvy.client.dialog.DialogPresenter;
-import codenvy.client.dialog.DialogView;
+import codenvy.client.userCard.UserCardPresenter;
+import codenvy.client.userCard.UserCardView;
 import codenvy.client.models.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DialogPresenterTest {
+public class UserCardPresenterTest {
     private static final String NAME = "name";
 
     private static final String ADDRESS = "address";
@@ -24,26 +24,26 @@ public class DialogPresenterTest {
     private static final Date BIRTHDAY = new Date();
 
     @Mock
-    private DialogView dialogView;
+    private UserCardView userCardView;
 
     @Mock
-    private DialogPresenter.Callback callback;
+    private UserCardPresenter.Callback callback;
 
     @Mock
     private User user;
 
     @InjectMocks
-    private DialogPresenter dialogPresenter;
+    private UserCardPresenter userCardPresenter;
 
     @Test
     public void shouldEmptyDialogShown() {
-        dialogPresenter.showDialog(callback, null);
+        userCardPresenter.showDialog(callback, null);
 
-        verify(dialogView).setName(eq(""));
-        verify(dialogView).setAddress(eq(""));
-        verify(dialogView).setBirthday(null);
+        verify(userCardView).setName(eq(""));
+        verify(userCardView).setAddress(eq(""));
+        verify(userCardView).setBirthday(null);
 
-        verify(dialogView).showDialog();
+        verify(userCardView).showDialog();
     }
 
     @Test
@@ -52,23 +52,23 @@ public class DialogPresenterTest {
         when(user.getAddress()).thenReturn(ADDRESS);
         when(user.getBirthday()).thenReturn(BIRTHDAY);
 
-        dialogPresenter.showDialog(callback, user);
+        userCardPresenter.showDialog(callback, user);
 
-        verify(dialogView).setName(eq(NAME));
-        verify(dialogView).setAddress(eq(ADDRESS));
-        verify(dialogView).setBirthday(eq(BIRTHDAY));
+        verify(userCardView).setName(eq(NAME));
+        verify(userCardView).setAddress(eq(ADDRESS));
+        verify(userCardView).setBirthday(eq(BIRTHDAY));
 
-        verify(dialogView).showDialog();
+        verify(userCardView).showDialog();
     }
 
     @Test
     public void shouldSaveUser() {
-        when(dialogView.getName()).thenReturn(NAME);
-        when(dialogView.getAddress()).thenReturn(ADDRESS);
-        when(dialogView.getBirthday()).thenReturn(BIRTHDAY);
+        when(userCardView.getName()).thenReturn(NAME);
+        when(userCardView.getAddress()).thenReturn(ADDRESS);
+        when(userCardView.getBirthday()).thenReturn(BIRTHDAY);
 
-        dialogPresenter.showDialog(callback, user);
-        dialogPresenter.onSaveButtonClicked();
+        userCardPresenter.showDialog(callback, user);
+        userCardPresenter.onSaveButtonClicked();
 
         ArgumentCaptor<User> user = ArgumentCaptor.forClass(User.class);
 
@@ -78,13 +78,13 @@ public class DialogPresenterTest {
         assertEquals(ADDRESS, user.getValue().getAddress());
         assertEquals(BIRTHDAY, user.getValue().getBirthday());
 
-        verify(dialogView).closeDialog();
+        verify(userCardView).closeDialog();
     }
 
     @Test
     public void shouldDialogClosed() {
-        dialogPresenter.onCloseButtonClicked();
+        userCardPresenter.onCloseButtonClicked();
 
-        verify(dialogView).closeDialog();
+        verify(userCardView).closeDialog();
     }
 }

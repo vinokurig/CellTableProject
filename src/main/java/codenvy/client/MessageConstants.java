@@ -18,16 +18,21 @@ public interface MessageConstants extends Messages {
 
     String mpColBirthday();
 
-    String dialogHeadLabel();
+    String userCardTitle();
 
-    String dialogNameLabel();
+    String userCardNameLabel();
 
-    String dialogAddressLabel();
+    String userCardAddressLabel();
 
-    String dialogBirthdayLabel();
+    String userCardBirthdayLabel();
 
-    String dialogBtnSave();
+    String userCardBtnSave();
 
-    String dialogBtnClose();
+    String userCardBtnClose();
 
+    String userCardNotesLabel();
+
+    String notesTitle();
+
+    String notesBtnSave();
 }

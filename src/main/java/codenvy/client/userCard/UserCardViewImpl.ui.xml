@@ -5,19 +5,22 @@
     <ui:with field='resources' type='codenvy.client.Resources'/>
     <ui:with field='messages' type='codenvy.client.MessageConstants'/>
 
-    <g:DockLayoutPanel unit='PX' width="250px" height="115px">
+    <g:DockLayoutPanel unit='PX' width="250px" height="170px">
 
         <g:center>
             <g:FlowPanel>
 
-                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.dialogNameLabel}"/>
+                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardNameLabel}"/>
                 <g:TextBox styleName="{resources.styles.textBoxStyle}" ui:field="name"/>
 
-                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.dialogAddressLabel}"/>
+                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardAddressLabel}"/>
                 <g:TextBox styleName="{resources.styles.textBoxStyle}" ui:field="address"/>
 
-                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.dialogBirthdayLabel}"/>
+                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardBirthdayLabel}"/>
                 <d:DateBox styleName="{resources.styles.textBoxStyle}" ui:field="birthday"/>
+
+                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardNotesLabel}"/>
+                <g:TextArea styleName="{resources.styles.userCardTexAreaStyle}" ui:field="notes"/>
 
             </g:FlowPanel>
         </g:center>
@@ -26,9 +29,10 @@
             <g:FlowPanel>
 
                 <g:Button styleName="{resources.styles.buttonStyle}" ui:field="closeButton"
-                          text="{messages.dialogBtnClose}"/>
+                          text="{messages.userCardBtnClose}"/>
+
                 <g:Button styleName="{resources.styles.buttonStyle}" ui:field="saveButton"
-                          text="{messages.dialogBtnSave}"/>
+                          text="{messages.userCardBtnSave}"/>
 
             </g:FlowPanel>
         </g:south>

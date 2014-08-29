@@ -17,6 +17,8 @@ public interface MainPageView extends View<MainPageView.ActionDelegate> {
 
         void onUserSelected(User user);
 
+        void onUserClicked(User user);
+
     }
 
     void setUser(List<User> users);
