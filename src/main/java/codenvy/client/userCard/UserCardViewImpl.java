@@ -18,12 +18,6 @@ import java.util.Date;
 
 public class UserCardViewImpl extends DialogBox implements UserCardView {
 
-    @Singleton
-    interface DialogViewImplUiBinder extends UiBinder<Widget, UserCardViewImpl> {
-    }
-
-    private ActionDelegate delegate;
-
     @UiField
     TextBox name;
 
@@ -38,6 +32,8 @@ public class UserCardViewImpl extends DialogBox implements UserCardView {
 
     @UiField(provided = true)
     MessageConstants messages;
+
+    private ActionDelegate delegate;
 
     @Inject
     public UserCardViewImpl(DialogViewImplUiBinder uiBinder, MessageConstants messages, @Named("myString") String someText) {
@@ -65,18 +61,13 @@ public class UserCardViewImpl extends DialogBox implements UserCardView {
     }
 
     @Override
-    public void setName(String name) {
-        this.name.setValue(name);
-    }
-
-    @Override
     public String getName() {
         return name.getValue();
     }
 
     @Override
-    public void setAddress(String address) {
-        this.address.setValue(address);
+    public void setName(String name) {
+        this.name.setValue(name);
     }
 
     @Override
@@ -85,8 +76,8 @@ public class UserCardViewImpl extends DialogBox implements UserCardView {
     }
 
     @Override
-    public void setBirthday(Date birthday) {
-        this.birthday.setValue(birthday);
+    public void setAddress(String address) {
+        this.address.setValue(address);
     }
 
     @Override
@@ -95,13 +86,18 @@ public class UserCardViewImpl extends DialogBox implements UserCardView {
     }
 
     @Override
-    public void setNotes(String notes) {
-        this.notes.setValue(notes);
+    public void setBirthday(Date birthday) {
+        this.birthday.setValue(birthday);
     }
 
     @Override
     public String getNotes() {
         return notes.getValue();
+    }
+
+    @Override
+    public void setNotes(String notes) {
+        this.notes.setValue(notes);
     }
 
     @UiHandler("saveButton")
@@ -112,5 +108,9 @@ public class UserCardViewImpl extends DialogBox implements UserCardView {
     @UiHandler("closeButton")
     public void onCloseButtonClicked(ClickEvent event) {
         delegate.onCloseButtonClicked();
+    }
+
+    @Singleton
+    interface DialogViewImplUiBinder extends UiBinder<Widget, UserCardViewImpl> {
     }
 }

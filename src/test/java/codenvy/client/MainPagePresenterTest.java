@@ -1,11 +1,11 @@
 package codenvy.client;
 
-import codenvy.client.notes.NotesPresenter;
-import codenvy.client.userCard.UserCardPresenter;
 import codenvy.client.mainPaige.MainPagePresenter;
 import codenvy.client.mainPaige.MainPageView;
 import codenvy.client.mainPaige.events.DeleteUserEvent;
 import codenvy.client.models.User;
+import codenvy.client.notes.NotesPresenter;
+import codenvy.client.userCard.UserCardPresenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -79,6 +79,7 @@ public class MainPagePresenterTest {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+
                 callback.onSaveButtonClicked(user);
 
                 return null;
@@ -139,7 +140,6 @@ public class MainPagePresenterTest {
 
         verify(mainPageView).setUser(usersList.capture());
 
-        assertFalse(usersList.getValue().contains(user));
         assertEquals(0, usersList.getValue().size());
     }
 
@@ -188,7 +188,8 @@ public class MainPagePresenterTest {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
-                callback.onSaveButtonClicked(user);
+
+                callback.onCloseButtonClicked(user);
 
                 return null;
             }

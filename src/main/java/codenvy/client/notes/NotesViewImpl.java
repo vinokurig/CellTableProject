@@ -13,17 +13,13 @@ import com.google.inject.Singleton;
 
 public class NotesViewImpl extends DialogBox implements NotesView {
 
-    @Singleton
-    interface NotesViewImplUiBinder extends UiBinder<Widget, NotesViewImpl> {
-    }
-
-    private ActionDelegate delegate;
-
     @UiField
     TextArea notesTextArea;
 
     @UiField(provided = true)
     MessageConstants messages;
+
+    private ActionDelegate delegate;
 
     @Inject
     public NotesViewImpl(NotesViewImplUiBinder uiBinder, MessageConstants messages) {
@@ -51,17 +47,21 @@ public class NotesViewImpl extends DialogBox implements NotesView {
     }
 
     @Override
-    public void setNotesText(String text) {
-        this.notesTextArea.setValue(text);
-    }
-
-    @Override
     public String getNotesText() {
         return notesTextArea.getValue();
     }
 
+    @Override
+    public void setNotesText(String text) {
+        this.notesTextArea.setValue(text);
+    }
+
     @UiHandler("saveButton")
     public void onSaveButtonClicked(ClickEvent event) {
-        delegate.onSaveButtonClicked();
+        delegate.onCloseButtonClicked();
+    }
+
+    @Singleton
+    interface NotesViewImplUiBinder extends UiBinder<Widget, NotesViewImpl> {
     }
 }

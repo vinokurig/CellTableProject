@@ -1,11 +1,13 @@
 package codenvy.client.mainPaige;
 
-import codenvy.client.mvp.View;
 import codenvy.client.models.User;
+import codenvy.client.mvp.View;
 
 import java.util.List;
 
 public interface MainPageView extends View<MainPageView.ActionDelegate> {
+
+    void setUser(List<User> users);
 
     interface ActionDelegate {
 
@@ -20,7 +22,4 @@ public interface MainPageView extends View<MainPageView.ActionDelegate> {
         void onUserClicked(User user);
 
     }
-
-    void setUser(List<User> users);
-
 }

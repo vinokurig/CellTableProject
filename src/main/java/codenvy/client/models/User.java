@@ -2,7 +2,7 @@ package codenvy.client.models;
 
 import java.util.Date;
 
-public class User{
+public class User {
 
     private String name;
 

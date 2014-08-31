@@ -58,11 +58,11 @@ public class NotesPresenterTest {
         when(notesView.getNotesText()).thenReturn(NOTES);
 
         notesPresenter.showNotes(callback, user);
-        notesPresenter.onSaveButtonClicked();
+        notesPresenter.onCloseButtonClicked();
 
         ArgumentCaptor<User> user = ArgumentCaptor.forClass(User.class);
 
-        verify(callback).onSaveButtonClicked(user.capture());
+        verify(callback).onCloseButtonClicked(user.capture());
 
         assertEquals(NAME, user.getValue().getName());
         assertEquals(BIRTHDAY, user.getValue().getBirthday());

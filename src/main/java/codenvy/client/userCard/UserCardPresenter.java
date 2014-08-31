@@ -5,10 +5,6 @@ import com.google.inject.Inject;
 
 public class UserCardPresenter implements UserCardView.ActionDelegate {
 
-    public interface Callback {
-        void onSaveButtonClicked(User user);
-    }
-
     private final UserCardView view;
 
     private Callback callback;
@@ -42,4 +38,7 @@ public class UserCardPresenter implements UserCardView.ActionDelegate {
         view.showDialog();
     }
 
+    public interface Callback {
+        void onSaveButtonClicked(User user);
+    }
 }

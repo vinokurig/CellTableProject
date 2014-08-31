@@ -14,7 +14,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -27,12 +26,6 @@ import java.util.List;
 
 public class MainPageViewImpl extends Composite implements MainPageView {
 
-    @Singleton
-    interface MainPageViewImplUiBinder extends UiBinder<Widget, MainPageViewImpl> {
-    }
-
-    private ActionDelegate delegate;
-
     @UiField(provided = true)
     MessageConstants messages;
 
@@ -41,6 +34,8 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
     @UiField(provided = true)
     CellTable<User> usersTable;
+
+    private ActionDelegate delegate;
 
     @Inject
     public MainPageViewImpl(MainPageViewImplUiBinder uiBinder, MessageConstants messages, Resources resources) {
@@ -138,4 +133,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         delegate.onDeleteButtonClicked();
     }
 
+    @Singleton
+    interface MainPageViewImplUiBinder extends UiBinder<Widget, MainPageViewImpl> {
+    }
 }

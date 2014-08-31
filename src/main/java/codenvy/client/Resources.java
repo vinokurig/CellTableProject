@@ -9,6 +9,15 @@ import com.google.inject.Singleton;
 @Singleton
 public interface Resources extends ClientBundle {
 
+    @Source("Styles.css")
+    Styles styles();
+
+    @Source("Text.txt")
+    TextResource text();
+
+    @Source("UserImage.jpg")
+    ImageResource userImage();
+
     public interface Styles extends CssResource {
         String labelStyle();
 
@@ -24,14 +33,4 @@ public interface Resources extends ClientBundle {
 
         String notesButtonStyle();
     }
-
-    @Source("Styles.css")
-    Styles styles();
-
-    @Source("Text.txt")
-    TextResource text();
-
-    @Source("UserImage.jpg")
-    ImageResource userImage();
-
 }

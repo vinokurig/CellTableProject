@@ -1,11 +1,11 @@
 package codenvy.client.mainPaige;
 
-import codenvy.client.userCard.UserCardPresenter;
 import codenvy.client.mainPaige.events.DeleteUserEvent;
 import codenvy.client.mainPaige.events.DeleteUserEventHandler;
 import codenvy.client.models.User;
 import codenvy.client.mvp.Presenter;
 import codenvy.client.notes.NotesPresenter;
+import codenvy.client.userCard.UserCardPresenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.inject.Inject;
@@ -70,7 +70,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
         notesEditCallback = new NotesPresenter.Callback() {
             @Override
-            public void onSaveButtonClicked(User user) {
+            public void onCloseButtonClicked(User user) {
                 usersList.add(usersList.indexOf(selectedUser), user);
                 usersList.remove(selectedUser);
 

@@ -1,8 +1,8 @@
 package codenvy.client;
 
+import codenvy.client.models.User;
 import codenvy.client.userCard.UserCardPresenter;
 import codenvy.client.userCard.UserCardView;
-import codenvy.client.models.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
