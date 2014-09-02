@@ -1,35 +1,41 @@
 @CHARSET "UTF-8";
 
-.buttonStyle {
+.userCardLabelStyle {
+    width: 50px;
+    float: left;
+    padding: 4px;
+}
+
+.userCardTextBoxStyle {
+    width: 170px;
     float: right;
 }
 
-.labelStyle {
-    width: 50px;
-    float: left;
-    padding: 5px;
+.userCardTexAreaStyle {
+    margin-top: 3px;
+    width: 168px;
+    height: 50px;
+    float: right;
+
+    max-width: 168px;
+    max-height: 50px;;
 }
 
-.textBoxStyle {
-    width: 180px;
-    float: left;
+.userCardButtonStyle {
+    float: right;
 }
 
 .cellTableStyle {
     width: 100%;
 }
 
-.userCardTexAreaStyle {
-    margin-top: 3px;
-    width: 178px;
-    height: 40px;
-    float: left;
-}
-
 .notesTextAreaStyle {
     margin: 6px;
     width: 230px;
     height: 70px;
+
+    max-width: 230px;
+    max-height: 70px;;
 }
 
 .notesButtonStyle {

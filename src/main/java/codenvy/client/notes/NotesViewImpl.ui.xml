@@ -8,11 +8,9 @@
     <g:DockLayoutPanel unit='PX' width="250px" height="115px">
 
         <g:center>
-            <g:FlowPanel>
 
-                <g:TextArea styleName="{resources.styles.notesTextAreaStyle}" ui:field="notesTextArea"/>
+            <g:TextArea styleName="{resources.styles.notesTextAreaStyle}" ui:field="notesTextArea"/>
 
-            </g:FlowPanel>
         </g:center>
 
         <g:south size="25">

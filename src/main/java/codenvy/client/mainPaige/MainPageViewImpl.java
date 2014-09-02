@@ -54,7 +54,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         usersTable.addStyleName(resources.styles().cellTableStyle());
 
         // Add a text column to show the name.
-        final TextColumn<User> nameColumn = new TextColumn<User>() {
+        TextColumn<User> nameColumn = new TextColumn<User>() {
             @Override
             public String getValue(User object) {
                 return object.getName();
@@ -63,7 +63,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
         // Add a date column to show the birthday.
         DateCell dateCell = new DateCell();
-        final Column<User, Date> dateColumn = new Column<User, Date>(dateCell) {
+        Column<User, Date> dateColumn = new Column<User, Date>(dateCell) {
             @Override
             public Date getValue(User object) {
                 return object.getBirthday();
@@ -71,7 +71,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
         };
 
         // Add a text column to show the address.
-        final TextColumn<User> addressColumn = new TextColumn<User>() {
+        TextColumn<User> addressColumn = new TextColumn<User>() {
             @Override
             public String getValue(User object) {
                 return object.getAddress();

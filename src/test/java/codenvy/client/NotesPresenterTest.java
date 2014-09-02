@@ -71,4 +71,18 @@ public class NotesPresenterTest {
 
         verify(notesView).closeNotes();
     }
+
+    @Test
+    public void shouldCloseOnSavedNote() {
+        when(user.getNotes()).thenReturn(NOTES);
+
+        when(notesView.getNotesText()).thenReturn(NOTES);
+
+        notesPresenter.showNotes(callback, user);
+        notesPresenter.onCloseButtonClicked();
+
+        verify(callback, never()).onCloseButtonClicked(any(User.class));
+
+        verify(notesView).closeNotes();
+    }
 }

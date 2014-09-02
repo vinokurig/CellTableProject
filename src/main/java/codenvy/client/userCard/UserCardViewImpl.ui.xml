@@ -6,21 +6,21 @@
     <ui:with field='resources' type='codenvy.client.Resources'/>
     <ui:with field='messages' type='codenvy.client.MessageConstants'/>
 
-    <g:DockLayoutPanel unit='PX' width="250px" height="170px">
+    <g:DockLayoutPanel unit='PX' width="240px" height="170px">
 
         <g:center>
             <g:FlowPanel>
 
-                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardNameLabel}"/>
-                <g:TextBox styleName="{resources.styles.textBoxStyle}" ui:field="name"/>
+                <g:Label styleName="{resources.styles.userCardLabelStyle}" text="{messages.userCardNameLabel}"/>
+                <g:TextBox styleName="{resources.styles.userCardTextBoxStyle}" ui:field="name"/>
 
-                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardAddressLabel}"/>
-                <g:TextBox styleName="{resources.styles.textBoxStyle}" ui:field="address"/>
+                <g:Label styleName="{resources.styles.userCardLabelStyle}" text="{messages.userCardAddressLabel}"/>
+                <g:TextBox styleName="{resources.styles.userCardTextBoxStyle}" ui:field="address"/>
 
-                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardBirthdayLabel}"/>
-                <d:DateBox styleName="{resources.styles.textBoxStyle}" ui:field="birthday"/>
+                <g:Label styleName="{resources.styles.userCardLabelStyle}" text="{messages.userCardBirthdayLabel}"/>
+                <d:DateBox styleName="{resources.styles.userCardTextBoxStyle}" ui:field="birthday"/>
 
-                <g:Label styleName="{resources.styles.labelStyle}" text="{messages.userCardNotesLabel}"/>
+                <g:Label styleName="{resources.styles.userCardLabelStyle}" text="{messages.userCardNotesLabel}"/>
                 <g:TextArea styleName="{resources.styles.userCardTexAreaStyle}" ui:field="notes"/>
 
             </g:FlowPanel>
@@ -29,10 +29,10 @@
         <g:south size="25">
             <g:FlowPanel>
 
-                <g:Button styleName="{resources.styles.buttonStyle}" ui:field="closeButton"
+                <g:Button styleName="{resources.styles.userCardButtonStyle}" ui:field="closeButton"
                           text="{messages.userCardBtnClose}"/>
 
-                <g:Button styleName="{resources.styles.buttonStyle}" ui:field="saveButton"
+                <g:Button styleName="{resources.styles.userCardButtonStyle}" ui:field="saveButton"
                           text="{messages.userCardBtnSave}"/>
 
             </g:FlowPanel>

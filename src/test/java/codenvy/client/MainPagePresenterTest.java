@@ -21,7 +21,8 @@ import org.mockito.stubbing.Answer;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -71,6 +72,7 @@ public class MainPagePresenterTest {
         verify(mainPageView).setUser(usersList.capture());
 
         assertTrue(usersList.getValue().contains(user));
+
         assertEquals(1, usersList.getValue().size());
     }
 
@@ -109,6 +111,7 @@ public class MainPagePresenterTest {
         verify(mainPageView).setUser(usersList.capture());
 
         assertTrue(usersList.getValue().contains(user));
+
         assertEquals(1, usersList.getValue().size());
     }
 
@@ -204,6 +207,7 @@ public class MainPagePresenterTest {
         verify(mainPageView).setUser(usersList.capture());
 
         assertTrue(usersList.getValue().contains(user));
+
         assertEquals(1, usersList.getValue().size());
     }
 }

@@ -19,7 +19,9 @@ public class NotesPresenter implements NotesView.ActionDelegate {
 
     @Override
     public void onCloseButtonClicked() {
-        callback.onCloseButtonClicked(new User(user.getName(), user.getBirthday(), user.getAddress(), view.getNotesText()));
+        if (!view.getNotesText().equals(user.getNotes())){
+            callback.onCloseButtonClicked(new User(user.getName(), user.getBirthday(), user.getAddress(), view.getNotesText()));
+        }
 
         view.closeNotes();
     }

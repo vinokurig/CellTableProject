@@ -13,7 +13,6 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import javax.inject.Named;
 import java.util.Date;
 
 public class UserCardViewImpl extends DialogBox implements UserCardView {
@@ -36,12 +35,12 @@ public class UserCardViewImpl extends DialogBox implements UserCardView {
     private ActionDelegate delegate;
 
     @Inject
-    public UserCardViewImpl(DialogViewImplUiBinder uiBinder, MessageConstants messages, @Named("myString") String someText) {
+    public UserCardViewImpl(DialogViewImplUiBinder uiBinder, MessageConstants messages) {
         this.messages = messages;
 
         add(uiBinder.createAndBindUi(this));
 
-        setText(someText);
+        setText(messages.userCardTitle());
     }
 
     @Override

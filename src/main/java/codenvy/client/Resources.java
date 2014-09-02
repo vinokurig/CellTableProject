@@ -19,11 +19,11 @@ public interface Resources extends ClientBundle {
     ImageResource userImage();
 
     public interface Styles extends CssResource {
-        String labelStyle();
+        String userCardLabelStyle();
 
-        String textBoxStyle();
+        String userCardTextBoxStyle();
 
-        String buttonStyle();
+        String userCardButtonStyle();
 
         String cellTableStyle();
 
