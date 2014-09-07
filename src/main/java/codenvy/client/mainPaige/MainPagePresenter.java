@@ -21,9 +21,9 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
     private final NotesPresenter notesPresenter;
 
-    private final UserCardPresenter.Callback UserCardAddCallback;
+    private final UserCardPresenter.Callback userCardAddCallback;
 
-    private final UserCardPresenter.Callback UserCardEditCallback;
+    private final UserCardPresenter.Callback userCardEditCallback;
 
     private final NotesPresenter.Callback notesEditCallback;
 
@@ -49,7 +49,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
         eventBus.addHandler(DeleteUserEvent.TYPE, this);
 
-        UserCardAddCallback = new UserCardPresenter.Callback() {
+        userCardAddCallback = new UserCardPresenter.Callback() {
             @Override
             public void onSaveButtonClicked(User user) {
                 usersList.add(user);
@@ -58,7 +58,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
             }
         };
 
-        UserCardEditCallback = new UserCardPresenter.Callback() {
+        userCardEditCallback = new UserCardPresenter.Callback() {
             @Override
             public void onSaveButtonClicked(User user) {
                 usersList.add(usersList.indexOf(selectedUser), user);
@@ -70,24 +70,25 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
         notesEditCallback = new NotesPresenter.Callback() {
             @Override
-            public void onCloseButtonClicked(User user) {
-                usersList.add(usersList.indexOf(selectedUser), user);
-                usersList.remove(selectedUser);
+            public void onCloseButtonClicked(String notes) {
+                if (!selectedUser.getNotes().equals(notes)){
+                    usersList.get(usersList.indexOf(selectedUser)).setNotes(notes);
 
-                MainPagePresenter.this.view.setUser(usersList);
+                    MainPagePresenter.this.view.setUser(usersList);
+                }
             }
         };
     }
 
     @Override
     public void onAddButtonClicked() {
-        userCardPresenter.showDialog(UserCardAddCallback, null);
+        userCardPresenter.showDialog(userCardAddCallback, null);
     }
 
     @Override
     public void onEditButtonClicked() {
         if (selectedUser != null) {
-            userCardPresenter.showDialog(UserCardEditCallback, selectedUser);
+            userCardPresenter.showDialog(userCardEditCallback, selectedUser);
         }
     }
 
@@ -102,8 +103,8 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
     }
 
     @Override
-    public void onUserClicked(User selectedUser) {
-        notesPresenter.showNotes(notesEditCallback, selectedUser);
+    public void onUserClicked() {
+        notesPresenter.showDialog(notesEditCallback, selectedUser.getNotes());
     }
 
     @Override

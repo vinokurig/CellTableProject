@@ -9,14 +9,14 @@ import codenvy.client.userCard.UserCardPresenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.gwt.test.GwtModule;
+import com.googlecode.gwt.test.GwtTestWithMockito;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.util.List;
@@ -26,8 +26,9 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
-public class MainPagePresenterTest {
+//@RunWith(MockitoJUnitRunner.class)
+@GwtModule("codenvy.client.Module")
+public class MainPagePresenterTest extends GwtTestWithMockito {
 
     @Captor
     ArgumentCaptor<List<User>> usersList;
@@ -173,7 +174,7 @@ public class MainPagePresenterTest {
     }
 
     @Test
-    public void shouldNotesUsed() {
+    public void shouldNotesSaved() {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
@@ -188,26 +189,69 @@ public class MainPagePresenterTest {
         reset(userCardPresenter);
         reset(mainPageView);
 
+        when(user.getNotes()).thenReturn("");
+
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
 
-                callback.onCloseButtonClicked(user);
+                callback.onCloseButtonClicked("Notes");
 
                 return null;
             }
-        }).when(notesPresenter).showNotes(any(NotesPresenter.Callback.class), any(User.class));
+        }).when(notesPresenter).showDialog(any(NotesPresenter.Callback.class), any(String.class));
 
         mainPagePresenter.onUserSelected(user);
 
-        mainPagePresenter.onUserClicked(user);
+        mainPagePresenter.onUserClicked();
 
-        verify(notesPresenter).showNotes(any(NotesPresenter.Callback.class), any(User.class));
+        verify(notesPresenter).showDialog(any(NotesPresenter.Callback.class), eq(""));
+
+        verify(user).setNotes("Notes");
 
         verify(mainPageView).setUser(usersList.capture());
 
         assertTrue(usersList.getValue().contains(user));
 
         assertEquals(1, usersList.getValue().size());
+    }
+
+    @Test
+    public void shouldJustCloseOnSavedNotes() {
+        doAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                callback.onSaveButtonClicked(user);
+
+                return null;
+            }
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), any(User.class));
+
+        mainPagePresenter.onAddButtonClicked();
+
+        reset(userCardPresenter);
+        reset(mainPageView);
+
+        when(user.getNotes()).thenReturn("Notes");
+
+        doAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
+
+                callback.onCloseButtonClicked("Notes");
+
+                return null;
+            }
+        }).when(notesPresenter).showDialog(any(NotesPresenter.Callback.class), any(String.class));
+
+        mainPagePresenter.onUserSelected(user);
+
+        mainPagePresenter.onUserClicked();
+
+        verify(notesPresenter).showDialog(any(NotesPresenter.Callback.class), eq("Notes"));
+
+        verify(user, never()).setNotes(anyString());
+
+        verify(mainPageView, never()).setUser(usersList.capture());
     }
 }

@@ -1,6 +1,5 @@
 package codenvy.client.notes;
 
-import codenvy.client.models.User;
 import com.google.inject.Inject;
 
 public class NotesPresenter implements NotesView.ActionDelegate {
@@ -8,8 +7,6 @@ public class NotesPresenter implements NotesView.ActionDelegate {
     private final NotesView view;
 
     private Callback callback;
-
-    private User user;
 
     @Inject
     public NotesPresenter(NotesView view) {
@@ -19,23 +16,20 @@ public class NotesPresenter implements NotesView.ActionDelegate {
 
     @Override
     public void onCloseButtonClicked() {
-        if (!view.getNotesText().equals(user.getNotes())){
-            callback.onCloseButtonClicked(new User(user.getName(), user.getBirthday(), user.getAddress(), view.getNotesText()));
-        }
+        callback.onCloseButtonClicked(view.getNotesText());
 
-        view.closeNotes();
+        view.closeDialog();
     }
 
-    public void showNotes(Callback callback, User user) {
+    public void showDialog(Callback callback, String notes) {
         this.callback = callback;
-        this.user = user;
 
-        view.setNotesText(user.getNotes());
+        view.setNotesText(notes);
 
-        view.showNotes();
+        view.showDialog();
     }
 
     public interface Callback {
-        void onCloseButtonClicked(User user);
+        void onCloseButtonClicked(String notes);
     }
 }

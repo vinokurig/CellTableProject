@@ -13,11 +13,11 @@ import com.google.inject.Singleton;
 
 public class NotesViewImpl extends DialogBox implements NotesView {
 
+    @UiField(provided = true)
+    final MessageConstants messages;
+
     @UiField
     TextArea notesTextArea;
-
-    @UiField(provided = true)
-    MessageConstants messages;
 
     private ActionDelegate delegate;
 
@@ -36,13 +36,13 @@ public class NotesViewImpl extends DialogBox implements NotesView {
     }
 
     @Override
-    public void showNotes() {
+    public void showDialog() {
         center();
         show();
     }
 
     @Override
-    public void closeNotes() {
+    public void closeDialog() {
         hide();
     }
 

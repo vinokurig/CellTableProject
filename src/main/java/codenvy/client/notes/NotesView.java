@@ -6,9 +6,9 @@ import com.google.inject.ImplementedBy;
 @ImplementedBy(NotesViewImpl.class)
 public interface NotesView extends View<NotesView.ActionDelegate> {
 
-    void showNotes();
+    void showDialog();
 
-    void closeNotes();
+    void closeDialog();
 
     String getNotesText();
 

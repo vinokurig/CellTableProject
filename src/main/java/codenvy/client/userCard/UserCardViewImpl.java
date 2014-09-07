@@ -30,7 +30,7 @@ public class UserCardViewImpl extends DialogBox implements UserCardView {
     TextArea notes;
 
     @UiField(provided = true)
-    MessageConstants messages;
+    final MessageConstants messages;
 
     private ActionDelegate delegate;
 

@@ -27,13 +27,13 @@ import java.util.List;
 public class MainPageViewImpl extends Composite implements MainPageView {
 
     @UiField(provided = true)
-    MessageConstants messages;
+    final MessageConstants messages;
 
     @UiField(provided = true)
-    Resources resources;
+    final Resources resources;
 
     @UiField(provided = true)
-    CellTable<User> usersTable;
+    final CellTable<User> usersTable;
 
     private ActionDelegate delegate;
 
@@ -92,16 +92,14 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 
         selModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
             public void onSelectionChange(SelectionChangeEvent event) {
-                User selectedUser = selModel.getSelectedObject();
-
-                delegate.onUserSelected(selectedUser);
+                delegate.onUserSelected(selModel.getSelectedObject());
             }
         });
 
         usersTable.addDomHandler(new DoubleClickHandler() {
             @Override
             public void onDoubleClick(DoubleClickEvent event) {
-                delegate.onUserClicked(selModel.getSelectedObject());
+                delegate.onUserClicked();
             }
         }, DoubleClickEvent.getType());
 

@@ -35,4 +35,7 @@ public class User {
         return notes;
     }
 
+    public void setNotes(String notes){
+        this.notes = notes;
+    }
 }
