@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.googlecode.gwt-test-utils</groupId>
             <artifactId>gwt-test-utils</artifactId>
-            <version>0.45</version>
+            <version>0.47</version>
             <scope>test</scope>
         </dependency>
 
@@ -89,6 +89,8 @@
         <!-- Generate compiled stuff in the folder used for developing mode -->
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
         <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -97,6 +99,16 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
+
         <plugins>
 
             <!-- GWT Maven Plugin -->

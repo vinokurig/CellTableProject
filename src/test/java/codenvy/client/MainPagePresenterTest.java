@@ -27,7 +27,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 //@RunWith(MockitoJUnitRunner.class)
-@GwtModule("codenvy.client.Module")
+@GwtModule("codenvy.Module")
 public class MainPagePresenterTest extends GwtTestWithMockito {
 
     @Captor
