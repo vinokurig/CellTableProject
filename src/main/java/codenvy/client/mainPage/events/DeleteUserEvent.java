@@ -1,4 +1,4 @@
-package codenvy.client.mainPaige.events;
+package codenvy.client.mainPage.events;
 
 import com.google.gwt.event.shared.GwtEvent;
 

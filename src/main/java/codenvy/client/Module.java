@@ -1,6 +1,6 @@
 package codenvy.client;
 
-import codenvy.client.mainPaige.MainPagePresenter;
+import codenvy.client.mainPage.MainPagePresenter;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.ui.RootLayoutPanel;

@@ -1,4 +1,4 @@
-package codenvy.client.mainPaige;
+package codenvy.client.mainPage;
 
 import codenvy.client.models.User;
 import codenvy.client.mvp.View;

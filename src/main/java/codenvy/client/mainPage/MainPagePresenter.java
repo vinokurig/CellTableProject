@@ -1,7 +1,7 @@
-package codenvy.client.mainPaige;
+package codenvy.client.mainPage;
 
-import codenvy.client.mainPaige.events.DeleteUserEvent;
-import codenvy.client.mainPaige.events.DeleteUserEventHandler;
+import codenvy.client.mainPage.events.DeleteUserEvent;
+import codenvy.client.mainPage.events.DeleteUserEventHandler;
 import codenvy.client.models.User;
 import codenvy.client.mvp.Presenter;
 import codenvy.client.notes.NotesPresenter;

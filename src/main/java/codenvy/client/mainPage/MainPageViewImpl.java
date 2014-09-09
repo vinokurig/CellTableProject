@@ -1,4 +1,4 @@
-package codenvy.client.mainPaige;
+package codenvy.client.mainPage;
 
 import codenvy.client.MessageConstants;
 import codenvy.client.Resources;
