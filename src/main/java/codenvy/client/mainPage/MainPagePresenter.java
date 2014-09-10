@@ -7,6 +7,7 @@ import codenvy.client.mvp.Presenter;
 import codenvy.client.notes.NotesPresenter;
 import codenvy.client.userCard.UserCardPresenter;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.inject.Inject;
 
@@ -120,6 +121,8 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
             usersList.remove(selectedUser);
 
             view.setUser(usersList);
+
+            Window.alert("Hello");
         }
     }
 }

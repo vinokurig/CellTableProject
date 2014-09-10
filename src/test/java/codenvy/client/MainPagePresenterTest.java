@@ -66,17 +66,17 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
 
                 callback.onSaveButtonClicked(user);
 
                 return null;
             }
-        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User)null));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
 
         mainPagePresenter.onAddButtonClicked();
 
-        verify(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User)null));
+        verify(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
 
         verify(mainPageView).setUser(usersList.capture());
 
@@ -91,7 +91,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
 
                 callback.onSaveButtonClicked(user);
 
@@ -106,7 +106,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
@@ -139,11 +139,11 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
                 return null;
             }
-        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User)null));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
 
         mainPagePresenter.onAddButtonClicked();
 
@@ -190,7 +190,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
@@ -206,7 +206,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                NotesPresenter.Callback callback = (NotesPresenter.Callback)invocation.getArguments()[0];
+                NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
 
                 callback.onCloseButtonClicked("Notes");
 
@@ -235,7 +235,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
@@ -251,7 +251,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                NotesPresenter.Callback callback = (NotesPresenter.Callback)invocation.getArguments()[0];
+                NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
 
                 callback.onCloseButtonClicked("Notes");
 
