@@ -2,15 +2,16 @@ package codenvy.client;
 
 import codenvy.client.mainPage.MainPagePresenter;
 import codenvy.client.mainPage.MainPageView;
-import codenvy.client.mainPage.MainPageViewImpl;
 import codenvy.client.mainPage.events.DeleteUserEvent;
 import codenvy.client.models.User;
 import codenvy.client.notes.NotesPresenter;
 import codenvy.client.userCard.UserCardPresenter;
+
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.googlecode.gwt.test.GwtModule;
 import com.googlecode.gwt.test.GwtTestWithMockito;
+
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -21,17 +22,25 @@ import org.mockito.stubbing.Answer;
 
 import java.util.List;
 
-import static com.googlecode.gwt.test.finder.GwtFinder.object;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyListOf;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.isA;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @GwtModule("codenvy.Module")
 public class MainPagePresenterTest extends GwtTestWithMockito {
 
     @Captor
-    ArgumentCaptor<List<User>> usersList;
+    private ArgumentCaptor<List<User>> usersList;
 
     @Mock
     private EventBus eventBus;
@@ -51,27 +60,23 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
     @InjectMocks
     private MainPagePresenter mainPagePresenter;
 
-    private MainPageViewImpl mainPageView() {
-        return object("mainPageView").ofType(MainPageViewImpl.class);
-    }
-
     @Test
     public void shouldUserAdded() {
         final User user = mock(User.class);
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
 
                 callback.onSaveButtonClicked(user);
 
                 return null;
             }
-        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User)null));
 
         mainPagePresenter.onAddButtonClicked();
 
-        verify(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
+        verify(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User)null));
 
         verify(mainPageView).setUser(usersList.capture());
 
@@ -86,7 +91,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
 
                 callback.onSaveButtonClicked(user);
 
@@ -101,7 +106,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
@@ -134,11 +139,11 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
                 return null;
             }
-        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User) null));
+        }).when(userCardPresenter).showDialog(any(UserCardPresenter.Callback.class), eq((User)null));
 
         mainPagePresenter.onAddButtonClicked();
 
@@ -163,19 +168,13 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
     @Test
     public void shouldPresenterGo() {
-        Module app = new Module();
-        app.onModuleLoad();
-
         HasWidgets container = mock(HasWidgets.class);
-
 
         mainPagePresenter.go(container);
 
+        verify(mainPageView).asWidget();
         verify(container).clear();
-
-        verify(container).add(isA(mainPageView().asWidget().getClass()));
-
-        //verify(mainPageView).asWidget();
+        verify(container).add(eq(mainPageView.asWidget()));
     }
 
     @Test
@@ -191,7 +190,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
@@ -207,7 +206,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
+                NotesPresenter.Callback callback = (NotesPresenter.Callback)invocation.getArguments()[0];
 
                 callback.onCloseButtonClicked("Notes");
 
@@ -236,7 +235,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                UserCardPresenter.Callback callback = (UserCardPresenter.Callback) invocation.getArguments()[0];
+                UserCardPresenter.Callback callback = (UserCardPresenter.Callback)invocation.getArguments()[0];
                 callback.onSaveButtonClicked(user);
 
                 return null;
@@ -252,7 +251,7 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
 
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
-                NotesPresenter.Callback callback = (NotesPresenter.Callback) invocation.getArguments()[0];
+                NotesPresenter.Callback callback = (NotesPresenter.Callback)invocation.getArguments()[0];
 
                 callback.onCloseButtonClicked("Notes");
 
