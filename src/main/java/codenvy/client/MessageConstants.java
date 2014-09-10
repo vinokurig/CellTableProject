@@ -35,4 +35,5 @@ public interface MessageConstants extends Messages {
     String notesTitle();
 
     String notesBtnSave();
+
 }

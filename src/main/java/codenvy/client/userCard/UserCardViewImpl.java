@@ -1,6 +1,7 @@
 package codenvy.client.userCard;
 
 import codenvy.client.MessageConstants;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -17,21 +18,16 @@ import java.util.Date;
 
 public class UserCardViewImpl extends DialogBox implements UserCardView {
 
-    @UiField
-    TextBox name;
-
-    @UiField
-    TextBox address;
-
-    @UiField
-    DateBox birthday;
-
-    @UiField
-    TextArea notes;
-
     @UiField(provided = true)
     final MessageConstants messages;
-
+    @UiField
+    TextBox name;
+    @UiField
+    TextBox address;
+    @UiField
+    DateBox birthday;
+    @UiField
+    TextArea notes;
     private ActionDelegate delegate;
 
     @Inject

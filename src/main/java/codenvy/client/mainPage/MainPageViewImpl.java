@@ -3,6 +3,7 @@ package codenvy.client.mainPage;
 import codenvy.client.MessageConstants;
 import codenvy.client.Resources;
 import codenvy.client.models.User;
+
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;

@@ -1,6 +1,7 @@
 package codenvy.client.userCard;
 
 import codenvy.client.models.User;
+
 import com.google.inject.Inject;
 
 public class UserCardPresenter implements UserCardView.ActionDelegate {

@@ -2,7 +2,7 @@ package codenvy.client.mainPage.events;
 
 import com.google.gwt.event.shared.GwtEvent;
 
-public class DeleteUserEvent extends GwtEvent<DeleteUserEventHandler>{
+public class DeleteUserEvent extends GwtEvent<DeleteUserEventHandler> {
 
     public static Type<DeleteUserEventHandler> TYPE = new Type<>();
 

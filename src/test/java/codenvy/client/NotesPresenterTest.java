@@ -3,6 +3,7 @@ package codenvy.client;
 import codenvy.client.models.User;
 import codenvy.client.notes.NotesPresenter;
 import codenvy.client.notes.NotesView;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

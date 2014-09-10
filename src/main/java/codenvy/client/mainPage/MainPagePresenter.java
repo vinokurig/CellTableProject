@@ -6,6 +6,7 @@ import codenvy.client.models.User;
 import codenvy.client.mvp.Presenter;
 import codenvy.client.notes.NotesPresenter;
 import codenvy.client.userCard.UserCardPresenter;
+
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -72,7 +73,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
         notesEditCallback = new NotesPresenter.Callback() {
             @Override
             public void onCloseButtonClicked(String notes) {
-                if (!selectedUser.getNotes().equals(notes)){
+                if (!selectedUser.getNotes().equals(notes)) {
                     usersList.get(usersList.indexOf(selectedUser)).setNotes(notes);
 
                     MainPagePresenter.this.view.setUser(usersList);
@@ -122,7 +123,7 @@ public class MainPagePresenter implements Presenter, MainPageView.ActionDelegate
 
             view.setUser(usersList);
 
-            Window.alert("Hello");
+            Window.alert("User removed");
         }
     }
 }

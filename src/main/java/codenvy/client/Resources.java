@@ -19,6 +19,7 @@ public interface Resources extends ClientBundle {
     ImageResource userImage();
 
     public interface Styles extends CssResource {
+
         String userCardLabelStyle();
 
         String userCardTextBoxStyle();
@@ -32,5 +33,6 @@ public interface Resources extends ClientBundle {
         String notesTextAreaStyle();
 
         String notesButtonStyle();
+
     }
 }

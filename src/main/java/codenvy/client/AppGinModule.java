@@ -2,6 +2,7 @@ package codenvy.client;
 
 import codenvy.client.mainPage.MainPageView;
 import codenvy.client.mainPage.MainPageViewImpl;
+
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
