@@ -2,6 +2,7 @@ package codenvy.client;
 
 import codenvy.client.mainPage.MainPagePresenter;
 import codenvy.client.mainPage.MainPageView;
+import codenvy.client.mainPage.MainPageViewImpl;
 import codenvy.client.mainPage.events.DeleteUserEvent;
 import codenvy.client.models.User;
 import codenvy.client.notes.NotesPresenter;
@@ -9,14 +10,12 @@ import codenvy.client.userCard.UserCardPresenter;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.gwt.test.GwtModule;
 import com.googlecode.gwt.test.GwtTestWithMockito;
 
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -25,16 +24,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyListOf;
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.isA;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @GwtModule("codenvy.Module")
 public class MainPagePresenterTest extends GwtTestWithMockito {
@@ -170,11 +160,12 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
     public void shouldPresenterGo() {
         HasWidgets container = mock(HasWidgets.class);
 
+        Mockito.when(mainPageView.asWidget()).thenReturn(new Widget());
+
         mainPagePresenter.go(container);
 
-        verify(mainPageView).asWidget();
         verify(container).clear();
-        verify(container).add(eq(mainPageView.asWidget()));
+        verify(container).add(isA(Widget.class));
     }
 
     @Test
