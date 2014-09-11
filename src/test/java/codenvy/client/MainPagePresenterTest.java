@@ -2,7 +2,6 @@ package codenvy.client;
 
 import codenvy.client.mainPage.MainPagePresenter;
 import codenvy.client.mainPage.MainPageView;
-import codenvy.client.mainPage.MainPageViewImpl;
 import codenvy.client.mainPage.events.DeleteUserEvent;
 import codenvy.client.models.User;
 import codenvy.client.notes.NotesPresenter;
@@ -160,12 +159,14 @@ public class MainPagePresenterTest extends GwtTestWithMockito {
     public void shouldPresenterGo() {
         HasWidgets container = mock(HasWidgets.class);
 
-        Mockito.when(mainPageView.asWidget()).thenReturn(new Widget());
+        Widget widget = mock(Widget.class);
+
+        Mockito.when(mainPageView.asWidget()).thenReturn(widget);
 
         mainPagePresenter.go(container);
 
         verify(container).clear();
-        verify(container).add(isA(Widget.class));
+        verify(container).add(eq(widget));
     }
 
     @Test
