@@ -14,7 +14,5 @@ public class AppGinModule extends AbstractGinModule {
         bind(MainPageView.class).to(MainPageViewImpl.class);
 
         bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
-
-        bind(Resources.class).in(Singleton.class);
     }
 }
