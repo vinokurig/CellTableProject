@@ -29,6 +29,6 @@ public class WhenAUserSearchesOnGoogle {
     @Test
     public void whenTheUserSearchesForSeleniumTheResultPageTitleShouldContainCats() {
         page.searchFor("selenium");
-        assertThat(page.getTitle(), containsString("selenium") );
+        assertThat(page.getTitle(), containsString("Google") );
     }
 }
