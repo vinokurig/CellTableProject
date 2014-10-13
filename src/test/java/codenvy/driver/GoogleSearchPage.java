@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class GoogleSearchPage {
 
     private WebElement q;
-    private WebElement btn;
+    private WebElement btnG;
 
     private WebDriver driver;
 
@@ -32,13 +32,13 @@ public class GoogleSearchPage {
     }
     public void searchFor(String searchTerm) {
         q.sendKeys(searchTerm);
-        btn.click();
+        btnG.click();
     }
     public void typeSearchTerm(String searchTerm) {
         q.sendKeys(searchTerm);
     }
     public void clickOnSearch() {
-        btn.click();
+        btnG.click();
     }
 }
 
