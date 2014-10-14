@@ -3,6 +3,7 @@ package codenvy.driver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -29,6 +30,6 @@ public class WhenAUserSearchesOnGoogle {
     @Test
     public void whenTheUserSearchesForSeleniumTheResultPageTitleShouldContainCats() {
         page.searchFor("selenium");
-        assertThat(page.getTitle(), containsString("Google") );
+        assertThat(page.getTitle(), containsString("Google"));
     }
 }
