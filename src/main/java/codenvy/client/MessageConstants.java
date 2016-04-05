@@ -3,6 +3,8 @@ package codenvy.client;
 import com.google.gwt.i18n.client.Messages;
 import com.google.inject.Singleton;
 
+
+//
 @Singleton
 public interface MessageConstants extends Messages {
 
