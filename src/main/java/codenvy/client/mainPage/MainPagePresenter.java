@@ -6,7 +6,7 @@ import codenvy.client.models.User;
 import codenvy.client.mvp.Presenter;
 import codenvy.client.notes.NotesPresenter;
 import codenvy.client.userCard.UserCardPresenter;
-
+//
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
