@@ -5,19 +5,18 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <!-- POM file generated with GWT webAppCreator -->
+    <parent>
+        <artifactId>test</artifactId>
+        <groupId>codenvy</groupId>
+        <version>1.2-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>codenvy</groupId>
     <artifactId>CellTableProject</artifactId>
     <packaging>war</packaging>
     <version>1.2-SNAPSHOT</version>
     <name>GWT Maven Archetype</name>
-  
-  
-  
-  
-  
-  
-
     <properties>
         <!-- Convenience property to set the GWT version -->
         <gwtVersion>2.6.1</gwtVersion>
